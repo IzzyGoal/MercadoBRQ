@@ -1,12 +1,11 @@
-package com.mercadobrq.www.MercadoBRQ.usecase;
+package com.mercadobrq.www.MercadoBRQ.entrypoint.Controller.model;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
 @Builder
-public class CategoriaDomainResponse {
+public class CategoriaModelResponse {
 
     private Long id;
     private String nome;
