@@ -1,5 +1,7 @@
 package com.mercadobrq.www.MercadoBRQ.usecase;
 
+import com.mercadobrq.www.MercadoBRQ.usecase.domain.CategoriaDomainRequest;
+import com.mercadobrq.www.MercadoBRQ.usecase.domain.CategoriaDomainResponse;
 import com.mercadobrq.www.MercadoBRQ.usecase.gateway.CategoriaGateway;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,10 +14,10 @@ public class CategoriaUseCase {
     private CategoriaGateway categoriaGateway;
 
     public CategoriaDomainResponse cadastrarCategoria(CategoriaDomainRequest categoriaDomainRequest) {
-    return categoriaGateway.cadastrarCategorias(categoriaDomainRequest);
+    return categoriaGateway.addCategory(categoriaDomainRequest);
     }
     public List<CategoriaDomainResponse> buscarCategoria() {
-        return  categoriaGateway.buscarCatgeorias();
+        return  categoriaGateway.findCategory();
     }
 
     public CategoriaDomainResponse atualizarCategoria(Long idCategoria,CategoriaDomainRequest categorianew) {
@@ -25,16 +27,16 @@ public class CategoriaUseCase {
                 .nome(categorianew.getNome())
                 .build();
 
-        return categoriaGateway.atualizarCategoria(categoriaDomainAtual);
+        return categoriaGateway.updateCategory(categoriaDomainAtual);
 
     }
 
     public CategoriaDomainResponse buscarCategoriaPorID(Long idCategoria) {
-        return categoriaGateway.buscarCategoriaPorId(idCategoria);
+        return categoriaGateway.findCategoryWithId(idCategoria);
     }
 
     public void removerCategoriaPorID(Long idCategoria) {
-        categoriaGateway.removerCategoriaPorID(idCategoria);
+        categoriaGateway.deleteCategoryWithId(idCategoria);
 
     }
 }

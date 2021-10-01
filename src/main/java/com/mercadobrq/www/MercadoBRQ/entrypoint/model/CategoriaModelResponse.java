@@ -1,4 +1,4 @@
-package com.mercadobrq.www.MercadoBRQ.entrypoint.Controller.model;
+package com.mercadobrq.www.MercadoBRQ.entrypoint.model;
 
 import lombok.Builder;
 import lombok.Getter;

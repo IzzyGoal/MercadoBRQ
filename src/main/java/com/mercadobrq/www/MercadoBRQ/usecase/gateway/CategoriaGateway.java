@@ -1,18 +1,18 @@
 package com.mercadobrq.www.MercadoBRQ.usecase.gateway;
 
-import com.mercadobrq.www.MercadoBRQ.usecase.CategoriaDomainRequest;
-import com.mercadobrq.www.MercadoBRQ.usecase.CategoriaDomainResponse;
+import com.mercadobrq.www.MercadoBRQ.usecase.domain.CategoriaDomainRequest;
+import com.mercadobrq.www.MercadoBRQ.usecase.domain.CategoriaDomainResponse;
 import java.util.List;
 
 public interface CategoriaGateway {
 
-    CategoriaDomainResponse cadastrarCategorias(CategoriaDomainRequest categoriaDomainRequest);
+    CategoriaDomainResponse addCategory(CategoriaDomainRequest categoriaDomainRequest);
 
-    List<CategoriaDomainResponse> buscarCatgeorias();
+    List<CategoriaDomainResponse> findCategory();
 
-    CategoriaDomainResponse buscarCategoriaPorId(Long idCategoria);
+    CategoriaDomainResponse findCategoryWithId(Long idCategoria);
 
-    void removerCategoriaPorID(Long idCategoria);
+    void deleteCategoryWithId(Long idCategoria);
 
-    CategoriaDomainResponse atualizarCategoria(CategoriaDomainResponse categoriaAtual);
+    CategoriaDomainResponse updateCategory(CategoriaDomainResponse categoriaAtual);
 }
