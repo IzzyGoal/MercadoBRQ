@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Classe responsavel por conter os dados do dominio da entidade categoria.
+ * Classe responsavel por conter o modelo de requisição á entidade Categoria.
  *
  * @author Gabriel Silva Lima
  * @since 30/09/2021

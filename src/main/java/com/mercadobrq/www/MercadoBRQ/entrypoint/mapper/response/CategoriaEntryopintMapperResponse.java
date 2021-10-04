@@ -6,6 +6,12 @@ import com.mercadobrq.www.MercadoBRQ.usecase.domain.response.CategoriaDomainResp
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Classe responsavel por tranformar/transportar informação da camada domain para model.
+ *
+ * @author Gabriel Silva Lima
+ * @since 30/09/2021
+ */
 public class CategoriaEntryopintMapperResponse {
 
     private CategoriaEntryopintMapperResponse() {}

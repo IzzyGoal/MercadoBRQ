@@ -22,7 +22,7 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 @RequestMapping(value="/categorias")
-public class MercadoControler {
+public class CategoriaController {
 
     private final CategoriaUseCase categoriaUseCase;
 
