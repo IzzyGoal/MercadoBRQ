@@ -49,7 +49,7 @@ public class CategoriaImplementation implements CategoriaGateway {
     public List<CategoriaDomainResponse> findCategory() {
         List<CategoriaEntity> categorias = categoriaRepository.findAll();
 
-        return CategoriaMapperResponse.toCollecationDomain(categorias);
+        return CategoriaMapperResponse.toCollectionDomain(categorias);
     }
 
     /**

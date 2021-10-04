@@ -38,7 +38,9 @@ public class ProdutoImplementation implements ProdutoGateway {
 
     @Override
     public List<ProdutoDomainResponse> searchAll() {
-        return null;
+        List<ProdutoEntity> produtos = produtoRepository.findAll();
+
+        return ProdutoDataProviderMapperResponse.toCollectionDomain(produtos);
     }
 
     @Override

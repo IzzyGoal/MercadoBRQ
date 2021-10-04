@@ -4,6 +4,7 @@ import com.mercadobrq.www.MercadoBRQ.entrypoint.model.response.ProdutoModelRespo
 import com.mercadobrq.www.MercadoBRQ.usecase.domain.response.ProdutoDomainResponse;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Classe responsavel por tranformar/transportar informação da camada domain para model.
@@ -31,10 +32,10 @@ public class ProdutoEntrypointMapperResponse {
                 .porcentagem(0)
                 .build();
     }
-
-//    public static List<ProdutoModelResponse> toCollectionModel(List<ProdutoDomainResponse> product) {
-//        return product.stream()
-//                .map(ProdutoModelResponse)
-//    }
+    public static List<ProdutoModelResponse> toCollectionModel(List<ProdutoDomainResponse> product) {
+       return product.stream()
+               .map(ProdutoEntrypointMapperResponse::toModel)
+               .collect(Collectors.toList());
+    }
 
 }

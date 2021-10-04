@@ -34,7 +34,10 @@ public class ProdutoDataProviderMapperResponse {
                 .build();
     }
 
-   // public static List<ProdutoDomainResponse> toCollectionDomain(List<ProdutoEntity> product) {
+    public static List<ProdutoDomainResponse> toCollectionDomain(List<ProdutoEntity> product) {
+        return product.stream()
+                .map(ProdutoDataProviderMapperResponse::toDomain)
+                .collect(Collectors.toList());
 
-    //}
+    }
 }

@@ -35,7 +35,7 @@ public class CategoriaMapperResponse {
      * @param categoriaEntities {@code CategoriaEntity}
      * @return categoriaEntities
      */
-    public static List<CategoriaDomainResponse> toCollecationDomain(List<CategoriaEntity> categoriaEntities) {
+    public static List<CategoriaDomainResponse> toCollectionDomain(List<CategoriaEntity> categoriaEntities) {
         return categoriaEntities.stream()
                 .map(CategoriaMapperResponse::toDomain)
                 .collect(Collectors.toList());

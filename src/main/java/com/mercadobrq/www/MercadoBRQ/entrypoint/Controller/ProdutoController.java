@@ -10,10 +10,9 @@ import com.mercadobrq.www.MercadoBRQ.usecase.gateway.ProdutoUseCase;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Classe central responsavel por conter todos os recursos a ser requisitado pelo consumidor da aplicação.
@@ -35,5 +34,13 @@ public class ProdutoController {
         ProdutoModelResponse produtoModelResponse = ProdutoEntrypointMapperResponse.toModel(produtoDomainResponse);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(produtoModelResponse);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ProdutoModelResponse>> searchProduct() {
+        List<ProdutoDomainResponse> product = produtoUseCase.searchAll();
+        List<ProdutoModelResponse> produtoModelResponses = ProdutoEntrypointMapperResponse.toCollectionModel(product);
+
+        return ResponseEntity.ok(produtoModelResponses);
     }
 }
