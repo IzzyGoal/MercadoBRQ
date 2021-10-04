@@ -1,8 +1,7 @@
-package com.mercadobrq.www.MercadoBRQ.entrypoint.mapper;
+package com.mercadobrq.www.MercadoBRQ.entrypoint.mapper.response;
 
-import com.mercadobrq.www.MercadoBRQ.dataprovider.mapper.CategoriaMapperResponse;
-import com.mercadobrq.www.MercadoBRQ.entrypoint.model.CategoriaModelResponse;
-import com.mercadobrq.www.MercadoBRQ.usecase.domain.CategoriaDomainResponse;
+import com.mercadobrq.www.MercadoBRQ.entrypoint.model.response.CategoriaModelResponse;
+import com.mercadobrq.www.MercadoBRQ.usecase.domain.response.CategoriaDomainResponse;
 
 import java.util.List;
 import java.util.stream.Collectors;

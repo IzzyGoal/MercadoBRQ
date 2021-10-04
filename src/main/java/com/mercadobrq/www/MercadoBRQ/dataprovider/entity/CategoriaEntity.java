@@ -2,14 +2,20 @@ package com.mercadobrq.www.MercadoBRQ.dataprovider.entity;
 
 import lombok.*;
 import javax.persistence.*;
-import java.util.Objects;
 
-
+/**
+ * Classe responsavel por mapear as entidades do objeto categoria.
+ *
+ * @author Gabriel Silva Lima
+ * @since 30/09/2021
+ * */
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Builder
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Table(name ="tab_categoria")
 public class CategoriaEntity {
 
@@ -21,18 +27,6 @@ public class CategoriaEntity {
     @Column(nullable = false)
     private String nome;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CategoriaEntity that = (CategoriaEntity) o;
-        return Objects.equals(id, that.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return 0;
-    }
 
 }
 
