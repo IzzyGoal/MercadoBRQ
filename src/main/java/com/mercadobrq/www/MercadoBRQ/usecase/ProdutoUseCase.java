@@ -1,7 +1,8 @@
-package com.mercadobrq.www.MercadoBRQ.usecase.gateway;
+package com.mercadobrq.www.MercadoBRQ.usecase;
 
 import com.mercadobrq.www.MercadoBRQ.usecase.domain.request.ProdutoDomainRequest;
 import com.mercadobrq.www.MercadoBRQ.usecase.domain.response.ProdutoDomainResponse;
+import com.mercadobrq.www.MercadoBRQ.usecase.gateway.ProdutoGateway;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;

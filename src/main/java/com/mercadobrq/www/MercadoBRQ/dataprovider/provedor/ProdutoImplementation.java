@@ -2,6 +2,7 @@ package com.mercadobrq.www.MercadoBRQ.dataprovider.provedor;
 
 import com.mercadobrq.www.MercadoBRQ.dataprovider.entity.ProdutoEntity;
 import com.mercadobrq.www.MercadoBRQ.dataprovider.mapper.request.ProdutoDataProviderMapperResquest;
+import com.mercadobrq.www.MercadoBRQ.dataprovider.mapper.response.CategoriaMapperResponse;
 import com.mercadobrq.www.MercadoBRQ.dataprovider.mapper.response.ProdutoDataProviderMapperResponse;
 import com.mercadobrq.www.MercadoBRQ.dataprovider.repository.CategoriaRepository;
 import com.mercadobrq.www.MercadoBRQ.dataprovider.repository.ProdutoRepository;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Classe responsavel por porver os dados da aplicação.
@@ -45,7 +47,9 @@ public class ProdutoImplementation implements ProdutoGateway {
 
     @Override
     public ProdutoDomainResponse findWithID(Long idProduct) {
-        return null;
+        Optional<ProdutoEntity> produtoEntity = produtoRepository.findById(idProduct);
+
+        return ProdutoDataProviderMapperResponse.toDomain(produtoEntity.get());
     }
 
     @Override
