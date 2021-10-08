@@ -1,5 +1,6 @@
 package com.mercadobrq.www.MercadoBRQ.entrypoint.Controller;
 
+import com.mercadobrq.www.MercadoBRQ.dataprovider.mapper.response.ProdutoDataProviderMapperResponse;
 import com.mercadobrq.www.MercadoBRQ.entrypoint.mapper.request.ProdutoEntrypointMapperRequest;
 import com.mercadobrq.www.MercadoBRQ.entrypoint.mapper.response.ProdutoEntrypointMapperResponse;
 import com.mercadobrq.www.MercadoBRQ.entrypoint.model.request.ProdutoModelRequest;
@@ -13,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Classe central responsavel por conter todos os recursos a ser requisitado pelo consumidor da aplicação.
@@ -69,9 +71,18 @@ public class ProdutoController {
     @PutMapping("/{id}")
     public ResponseEntity<ProdutoModelResponse> update(@PathVariable("id") Long idProduct,
                                                         @RequestBody ProdutoModelRequest productModel) {
-        ProdutoDomainRequest productdomain = ProdutoEntrypointMapperRequest.toDomain(productModel);
+        ProdutoDomainRequest productdomain = ProdutoEntrypointMapperRequest.toDomainUpdate(productModel);
         ProdutoDomainResponse productResponse = produtoUseCase.updateProduct(idProduct,productdomain);
         ProdutoModelResponse produtoModelResponse = ProdutoEntrypointMapperResponse.toModel(productResponse);
+
+        return ResponseEntity.ok(produtoModelResponse);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<ProdutoModelResponse> partiallyUpdate(@PathVariable("id") Long idProduct,
+                                                                @RequestBody Map<String, Object> campos) {
+        ProdutoDomainResponse product = produtoUseCase.partiallyUpdate(idProduct,campos);
+        ProdutoModelResponse produtoModelResponse = ProdutoEntrypointMapperResponse.toModel(product);
 
         return ResponseEntity.ok(produtoModelResponse);
     }

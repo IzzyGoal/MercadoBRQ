@@ -27,9 +27,9 @@ public class ProdutoEntrypointMapperResponse {
                 .marca(product.getMarca())
                 .quantidade(product.getQuantidade())
                 .preco(product.getPreco())
-                .ativo(true)
-                .ofertado(false)
-                .porcentagem(0)
+                .ativo(product.getAtivo())
+                .ofertado(product.getOfertado())
+                .porcentagem(product.getPorcentagem())
                 .build();
     }
     public static List<ProdutoModelResponse> toCollectionModel(List<ProdutoDomainResponse> product) {

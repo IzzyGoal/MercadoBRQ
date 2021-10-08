@@ -1,10 +1,14 @@
 package com.mercadobrq.www.MercadoBRQ.usecase;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mercadobrq.www.MercadoBRQ.usecase.domain.request.ProdutoDomainRequest;
 import com.mercadobrq.www.MercadoBRQ.usecase.domain.response.ProdutoDomainResponse;
 import com.mercadobrq.www.MercadoBRQ.usecase.gateway.ProdutoGateway;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ReflectionUtils;
+
+import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
 
@@ -46,16 +50,30 @@ public class ProdutoUseCase {
                 .marca(product.getMarca())
                 .quantidade(product.getQuantidade())
                 .preco(product.getPreco())
-                .ativo(productNow.getAtivo())
-                .ofertado(productNow.getOfertado())
-                .porcentagem(productNow.getPorcentagem())
+                .ativo(product.getAtivo())
+                .ofertado(product.getOfertado())
+                .porcentagem(product.getPorcentagem())
                 .build();
 
         return produtoGateway.updateProduct(productNow);
     }
-//    public ProdutoDomainResponse partiallyUpdate(Long idProduct, Map<String, Object> newData) {
-//        ProdutoDomainResponse produtoAtual = findProductWithId(idProduct);
-//
-//        return produtoGateway.partiallyUpdate(produtoAtual);
-//    }
+    public ProdutoDomainResponse partiallyUpdate(Long idProduct, Map<String, Object> newData) {
+
+        ProdutoDomainResponse product = produtoGateway.findWithID(idProduct);
+        merge(newData,product);
+
+        return produtoGateway.partiallyUpdate(product);
+    }
+
+    private void merge(Map<String, Object> newDataProduct, ProdutoDomainResponse product) {
+        var objectMapper = new ObjectMapper();
+        ProdutoDomainResponse ProductOrigin = objectMapper.convertValue(newDataProduct, ProdutoDomainResponse.class);
+        newDataProduct.forEach((name, value) -> {
+            Field field = ReflectionUtils.findField(ProdutoDomainResponse.class, name);
+            field.setAccessible(true);
+            Object newValue = ReflectionUtils.getField(field,ProductOrigin);
+
+            ReflectionUtils.setField(field, product, newValue);
+        });
+    }
 }

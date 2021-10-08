@@ -10,6 +10,7 @@ import com.mercadobrq.www.MercadoBRQ.usecase.domain.request.ProdutoDomainRequest
 import com.mercadobrq.www.MercadoBRQ.usecase.domain.response.ProdutoDomainResponse;
 import com.mercadobrq.www.MercadoBRQ.usecase.gateway.ProdutoGateway;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
@@ -52,18 +53,26 @@ public class ProdutoImplementation implements ProdutoGateway {
         return ProdutoDataProviderMapperResponse.toDomain(produtoEntity.get());
     }
 
+    @Transactional
     @Override
     public ProdutoDomainResponse updateProduct(ProdutoDomainResponse newProduct) {
-        return null;
+        ProdutoEntity product = ProdutoDataProviderMapperResquest.toEntityUpdate(newProduct);
+        ProdutoEntity savedProduct = produtoRepository.save(product);
+
+        return ProdutoDataProviderMapperResponse.toDomain(savedProduct);
     }
+
 
     @Override
     public ProdutoDomainResponse partiallyUpdate(ProdutoDomainResponse productChanged) {
-        return null;
+        ProdutoEntity newProduct = ProdutoDataProviderMapperResquest.toEntityUpdate(productChanged);
+        ProdutoEntity savedProduct = produtoRepository.save(newProduct);
+
+        return ProdutoDataProviderMapperResponse.toDomain(savedProduct);
     }
 
     @Override
     public void deleteProduct(Long idProduct) {
-
+        produtoRepository.deleteById(idProduct);
     }
 }

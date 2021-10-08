@@ -4,8 +4,6 @@ import com.mercadobrq.www.MercadoBRQ.dataprovider.entity.ProdutoEntity;
 import com.mercadobrq.www.MercadoBRQ.usecase.domain.request.ProdutoDomainRequest;
 import com.mercadobrq.www.MercadoBRQ.usecase.domain.response.ProdutoDomainResponse;
 
-import java.math.BigDecimal;
-
 /**
  * Classe responsavel por preencher os dados do dominio com dados da entidade
  *
@@ -32,6 +30,9 @@ public class ProdutoDataProviderMapperResquest {
                 .marca(product.getMarca())
                 .quantidade(product.getQuantidade())
                 .preco(product.getPreco())
+                .ativo(true)
+                .ofertado(false)
+                .porcetagem(0)
                 .build();
     }
 
@@ -47,9 +48,10 @@ public class ProdutoDataProviderMapperResquest {
                 .descricao(product.getDescricao())
                 .marca(product.getMarca())
                 .quantidade(product.getQuantidade())
-                .ativo(true)
-                .ofertado(false)
-                .porcetagem(0)
+                .preco(product.getPreco())
+                .ativo(product.getAtivo())
+                .ofertado(product.getOfertado())
+                .porcetagem(product.getPorcentagem())
                 .build();
     }
 }

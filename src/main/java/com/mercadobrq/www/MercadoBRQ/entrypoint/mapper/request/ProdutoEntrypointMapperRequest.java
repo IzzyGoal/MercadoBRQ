@@ -30,4 +30,17 @@ public class ProdutoEntrypointMapperRequest {
                 .preco(product.getPreco())
                 .build();
     }
+
+    public static ProdutoDomainRequest toDomainUpdate(ProdutoModelRequest productModel) {
+        return  ProdutoDomainRequest.builder()
+                .nome(productModel.getNome())
+                .descricao(productModel.getDescricao())
+                .marca(productModel.getMarca())
+                .quantidade(productModel.getQuantidade())
+                .preco(productModel.getPreco())
+                .ativo(productModel.getAtivo())
+                .ofertado(productModel.getOfertado())
+                .porcentagem(productModel.getPorcentagem())
+                .build();
+    }
 }

@@ -1,8 +1,7 @@
 package com.mercadobrq.www.MercadoBRQ.usecase.domain.response;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+
 import java.math.BigDecimal;
 
 /**
@@ -14,6 +13,8 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ProdutoDomainResponse {
 
     private Long id;
