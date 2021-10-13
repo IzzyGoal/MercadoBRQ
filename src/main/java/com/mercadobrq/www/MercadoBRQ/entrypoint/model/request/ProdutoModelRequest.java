@@ -2,7 +2,6 @@ package com.mercadobrq.www.MercadoBRQ.entrypoint.model.request;
 
 import lombok.Getter;
 import lombok.Setter;
-
 import java.math.BigDecimal;
 
 /**
@@ -23,4 +22,5 @@ public class ProdutoModelRequest {
     private Boolean ativo;
     private Boolean ofertado;
     private Integer porcentagem;
+    private CategoriaModelRequest categoria;
 }

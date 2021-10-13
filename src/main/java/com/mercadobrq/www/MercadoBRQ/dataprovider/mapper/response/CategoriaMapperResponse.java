@@ -4,6 +4,7 @@ import com.mercadobrq.www.MercadoBRQ.dataprovider.entity.CategoriaEntity;
 import com.mercadobrq.www.MercadoBRQ.usecase.domain.response.CategoriaDomainResponse;
 import java.util.List;
 import java.util.stream.Collectors;
+
 /**
  * Classe resposavel por mappear e transportar informação entre dominio e entidade.
  *

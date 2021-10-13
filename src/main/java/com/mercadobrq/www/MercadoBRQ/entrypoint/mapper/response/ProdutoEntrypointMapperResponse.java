@@ -30,6 +30,7 @@ public class ProdutoEntrypointMapperResponse {
                 .ativo(product.getAtivo())
                 .ofertado(product.getOfertado())
                 .porcentagem(product.getPorcentagem())
+                .categoria(CategoriaEntryopintMapperResponse.toModel(product.getCategoria()))
                 .build();
     }
     public static List<ProdutoModelResponse> toCollectionModel(List<ProdutoDomainResponse> product) {

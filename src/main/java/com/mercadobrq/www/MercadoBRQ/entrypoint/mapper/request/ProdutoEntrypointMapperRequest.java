@@ -1,6 +1,10 @@
 package com.mercadobrq.www.MercadoBRQ.entrypoint.mapper.request;
 
+import com.mercadobrq.www.MercadoBRQ.dataprovider.mapper.request.CategoriaMapperRequest;
+import com.mercadobrq.www.MercadoBRQ.entrypoint.mapper.response.CategoriaEntryopintMapperResponse;
+import com.mercadobrq.www.MercadoBRQ.entrypoint.model.request.CategoriaModelRequest;
 import com.mercadobrq.www.MercadoBRQ.entrypoint.model.request.ProdutoModelRequest;
+import com.mercadobrq.www.MercadoBRQ.usecase.domain.request.CategoriaDomainRequest;
 import com.mercadobrq.www.MercadoBRQ.usecase.domain.request.ProdutoDomainRequest;
 
 /**
@@ -28,6 +32,7 @@ public class ProdutoEntrypointMapperRequest {
                 .marca(product.getMarca())
                 .quantidade(product.getQuantidade())
                 .preco(product.getPreco())
+                .categoria(CategoriaEntrypointMapperRequest.toDomainProduct(product.getCategoria()))
                 .build();
     }
 
@@ -41,6 +46,7 @@ public class ProdutoEntrypointMapperRequest {
                 .ativo(productModel.getAtivo())
                 .ofertado(productModel.getOfertado())
                 .porcentagem(productModel.getPorcentagem())
+                .categoria(CategoriaEntrypointMapperRequest.toDomainProduct(productModel.getCategoria()))
                 .build();
     }
 }

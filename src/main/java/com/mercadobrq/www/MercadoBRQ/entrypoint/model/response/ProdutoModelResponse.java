@@ -1,5 +1,6 @@
 package com.mercadobrq.www.MercadoBRQ.entrypoint.model.response;
 
+import com.mercadobrq.www.MercadoBRQ.dataprovider.entity.CategoriaEntity;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -24,4 +25,5 @@ public class ProdutoModelResponse {
     private Boolean ativo;
     private Boolean ofertado;
     private Integer porcentagem;
+    private CategoriaModelResponse categoria;
 }

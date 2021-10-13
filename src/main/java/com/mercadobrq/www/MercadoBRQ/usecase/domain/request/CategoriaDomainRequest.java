@@ -12,5 +12,6 @@ import lombok.Getter;
 @Getter
 @Builder
 public class CategoriaDomainRequest {
+    private Long id;
     private String nome;
 }

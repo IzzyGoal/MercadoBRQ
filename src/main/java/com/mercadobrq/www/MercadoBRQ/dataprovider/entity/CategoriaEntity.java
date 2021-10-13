@@ -2,6 +2,7 @@ package com.mercadobrq.www.MercadoBRQ.dataprovider.entity;
 
 import lombok.*;
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Classe responsavel por mapear as entidades do objeto categoria.
@@ -26,7 +27,5 @@ public class CategoriaEntity {
 
     @Column(nullable = false)
     private String nome;
-
-
 }
 

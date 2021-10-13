@@ -48,4 +48,8 @@ public class ProdutoEntity {
 
     @Column
     private Integer porcetagem;
+
+    @ManyToOne(targetEntity = CategoriaEntity.class)
+    @JoinColumn(nullable = false)
+    private CategoriaEntity categoria;
 }

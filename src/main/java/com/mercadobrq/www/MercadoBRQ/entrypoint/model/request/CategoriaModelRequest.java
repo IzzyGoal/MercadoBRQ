@@ -13,5 +13,6 @@ import lombok.Setter;
 @Setter
 public class CategoriaModelRequest {
 
+    private Long id;
     private String nome;
 }
