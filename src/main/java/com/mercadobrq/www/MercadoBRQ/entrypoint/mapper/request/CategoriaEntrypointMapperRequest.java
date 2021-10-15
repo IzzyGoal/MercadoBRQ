@@ -34,6 +34,7 @@ public class CategoriaEntrypointMapperRequest {
 
         return CategoriaDomainRequest.builder()
                 .id(category.getId())
+                .nome(category.getNome())
                 .build();
     }
 }
