@@ -1,8 +1,6 @@
 package com.mercadobrq.www.MercadoBRQ.usecase.domain.response;
 
-import com.mercadobrq.www.MercadoBRQ.dataprovider.entity.CategoriaEntity;
 import lombok.*;
-
 import java.math.BigDecimal;
 
 /**
@@ -28,5 +26,4 @@ public class ProdutoDomainResponse {
     private Boolean ofertado;
     private Integer porcentagem;
     private CategoriaDomainResponse categoria;
-
 }

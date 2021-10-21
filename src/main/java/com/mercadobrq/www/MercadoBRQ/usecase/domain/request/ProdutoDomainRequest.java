@@ -2,7 +2,6 @@ package com.mercadobrq.www.MercadoBRQ.usecase.domain.request;
 
 import lombok.Builder;
 import lombok.Getter;
-
 import java.math.BigDecimal;
 
 /**

@@ -1,5 +1,6 @@
 package com.mercadobrq.www.MercadoBRQ.entrypoint.mapper.request;
 
+import com.mercadobrq.www.MercadoBRQ.entrypoint.model.request.CategoriaIDModelRequest;
 import com.mercadobrq.www.MercadoBRQ.entrypoint.model.request.CategoriaModelRequest;
 import com.mercadobrq.www.MercadoBRQ.usecase.domain.request.CategoriaDomainRequest;
 
@@ -27,7 +28,7 @@ public class CategoriaEntrypointMapperRequest {
                 .nome(categoriaModelRequest.getNome())
                 .build();
     }
-    public static CategoriaDomainRequest toDomainProduct(CategoriaModelRequest category) {
+    public static CategoriaDomainRequest toDomainProduct(CategoriaIDModelRequest category) {
         if (Objects.isNull(category)) {
             return CategoriaDomainRequest.builder().build();
         }

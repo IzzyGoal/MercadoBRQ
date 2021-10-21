@@ -2,7 +2,7 @@ package com.mercadobrq.www.MercadoBRQ.usecase;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mercadobrq.www.MercadoBRQ.usecase.domain.request.ProdutoDomainRequest;
-import com.mercadobrq.www.MercadoBRQ.usecase.domain.request.ProdutoParameterModelResquest;
+import com.mercadobrq.www.MercadoBRQ.entrypoint.model.request.ProdutoParameterModelResquest;
 import com.mercadobrq.www.MercadoBRQ.usecase.domain.response.ProdutoDomainResponse;
 import com.mercadobrq.www.MercadoBRQ.usecase.gateway.ProdutoGateway;
 import lombok.AllArgsConstructor;
@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 import java.lang.reflect.Field;
 import java.util.Map;
-import java.util.Objects;
 
 import static com.mercadobrq.www.MercadoBRQ.usecase.utils.ProdutoUseCaseUtils.CheckIfProductExist;
 

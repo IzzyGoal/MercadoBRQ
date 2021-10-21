@@ -7,7 +7,7 @@ import com.mercadobrq.www.MercadoBRQ.entrypoint.model.response.ProdutoModelRespo
 import com.mercadobrq.www.MercadoBRQ.entrypoint.model.response.ProdutoModelResponseShort;
 import com.mercadobrq.www.MercadoBRQ.usecase.ProdutoUseCase;
 import com.mercadobrq.www.MercadoBRQ.usecase.domain.request.ProdutoDomainRequest;
-import com.mercadobrq.www.MercadoBRQ.usecase.domain.request.ProdutoParameterModelResquest;
+import com.mercadobrq.www.MercadoBRQ.entrypoint.model.request.ProdutoParameterModelResquest;
 import com.mercadobrq.www.MercadoBRQ.usecase.domain.response.ProdutoDomainResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;

@@ -1,10 +1,11 @@
-package com.mercadobrq.www.MercadoBRQ.usecase.domain.request;
+package com.mercadobrq.www.MercadoBRQ.entrypoint.model.request;
 
 import lombok.Getter;
 import java.beans.ConstructorProperties;
 
 @Getter
 public class ProdutoParameterModelResquest {
+
     private String nomeCategoria;
     private String marca;
 
