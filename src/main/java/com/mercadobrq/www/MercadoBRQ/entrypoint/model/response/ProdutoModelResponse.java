@@ -1,8 +1,8 @@
 package com.mercadobrq.www.MercadoBRQ.entrypoint.model.response;
 
-import com.mercadobrq.www.MercadoBRQ.dataprovider.entity.CategoriaEntity;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 
@@ -13,6 +13,7 @@ import java.math.BigDecimal;
  * @since 30/09/2021
  */
 @Getter
+@Setter
 @Builder
 public class ProdutoModelResponse {
 

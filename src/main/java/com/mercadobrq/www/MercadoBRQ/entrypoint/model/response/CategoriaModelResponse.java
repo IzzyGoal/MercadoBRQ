@@ -2,6 +2,7 @@ package com.mercadobrq.www.MercadoBRQ.entrypoint.model.response;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Classe responsavel pór conter o modelo de resposta da entidade categoria.
@@ -10,6 +11,7 @@ import lombok.Getter;
  * @since 30/09/2021
  */
 @Getter
+@Setter
 @Builder
 public class CategoriaModelResponse {
 

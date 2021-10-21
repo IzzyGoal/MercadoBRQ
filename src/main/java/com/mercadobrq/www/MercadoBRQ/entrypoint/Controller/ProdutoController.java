@@ -1,19 +1,21 @@
 package com.mercadobrq.www.MercadoBRQ.entrypoint.Controller;
 
-import com.mercadobrq.www.MercadoBRQ.dataprovider.mapper.response.ProdutoDataProviderMapperResponse;
 import com.mercadobrq.www.MercadoBRQ.entrypoint.mapper.request.ProdutoEntrypointMapperRequest;
 import com.mercadobrq.www.MercadoBRQ.entrypoint.mapper.response.ProdutoEntrypointMapperResponse;
 import com.mercadobrq.www.MercadoBRQ.entrypoint.model.request.ProdutoModelRequest;
 import com.mercadobrq.www.MercadoBRQ.entrypoint.model.response.ProdutoModelResponse;
+import com.mercadobrq.www.MercadoBRQ.entrypoint.model.response.ProdutoModelResponseShort;
 import com.mercadobrq.www.MercadoBRQ.usecase.ProdutoUseCase;
 import com.mercadobrq.www.MercadoBRQ.usecase.domain.request.ProdutoDomainRequest;
+import com.mercadobrq.www.MercadoBRQ.usecase.domain.request.ProdutoParameterModelResquest;
 import com.mercadobrq.www.MercadoBRQ.usecase.domain.response.ProdutoDomainResponse;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -48,11 +50,17 @@ public class ProdutoController {
      * @return ResponseEntity(produtoModelResponses)
      */
     @GetMapping
-    public ResponseEntity<List<ProdutoModelResponse>> searchProduct() {
-        List<ProdutoDomainResponse> product = produtoUseCase.searchAll();
-        List<ProdutoModelResponse> produtoModelResponses = ProdutoEntrypointMapperResponse.toCollectionModel(product);
+    public ResponseEntity<Page<ProdutoModelResponseShort>> searchAllProduct(Pageable pageable,
+                                                                            ProdutoParameterModelResquest productParameter) {
+        Page<ProdutoDomainResponse> produtoDomain =
+                produtoUseCase.SearchAllProductWhitParameters(pageable,productParameter);
+        if (produtoDomain.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        Page<ProdutoModelResponseShort> productResponseShorts =
+                ProdutoEntrypointMapperResponse.toCollectionModelShort(produtoDomain);
 
-        return ResponseEntity.ok(produtoModelResponses);
+        return ResponseEntity.ok(productResponseShorts);
     }
 
     /**

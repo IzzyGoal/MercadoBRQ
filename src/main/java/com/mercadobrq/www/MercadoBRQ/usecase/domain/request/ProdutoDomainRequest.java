@@ -1,6 +1,5 @@
 package com.mercadobrq.www.MercadoBRQ.usecase.domain.request;
 
-import com.mercadobrq.www.MercadoBRQ.dataprovider.entity.CategoriaEntity;
 import lombok.Builder;
 import lombok.Getter;
 

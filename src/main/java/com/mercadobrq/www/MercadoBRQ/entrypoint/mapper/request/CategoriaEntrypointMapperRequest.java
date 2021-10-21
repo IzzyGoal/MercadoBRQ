@@ -28,13 +28,8 @@ public class CategoriaEntrypointMapperRequest {
                 .build();
     }
     public static CategoriaDomainRequest toDomainProduct(CategoriaModelRequest category) {
-        if (Objects.isNull(category)) {
-            return CategoriaDomainRequest.builder().build();
-        }
-
         return CategoriaDomainRequest.builder()
                 .id(category.getId())
-                .nome(category.getNome())
                 .build();
     }
 }

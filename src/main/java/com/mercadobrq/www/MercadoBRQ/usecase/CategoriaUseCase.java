@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Classe responsavel por intermediar a operação logica da aplicação e a comunicação com o banco de dados
@@ -22,25 +23,32 @@ public class CategoriaUseCase {
     private CategoriaGateway categoriaGateway;
 
     public CategoriaDomainResponse cadastrarCategoria(CategoriaDomainRequest categoriaDomainRequest) {
-    return categoriaGateway.addCategory(categoriaDomainRequest);
+            return categoriaGateway.addCategory(categoriaDomainRequest);
+
     }
 
-    public List<CategoriaDomainResponse> buscarCategoria() {
+    public List<CategoriaDomainResponse> buscarCategorias() {
         return  categoriaGateway.findCategory();
+    }
+
+    private CategoriaDomainResponse findCatgeoryWithName(String name) {
+        return categoriaGateway.findCategoryWithName(name);
     }
 
     public CategoriaDomainResponse atualizarCategoria(Long idCategoria,CategoriaDomainRequest categorianNew) {
         CategoriaDomainResponse categoriaDomainAtual = buscarCategoriaPorID(idCategoria);
-        categoriaDomainAtual = CategoriaDomainResponse.builder()
-                .id(categoriaDomainAtual.getId())
-                .nome(categorianNew.getNome())
-                .build();
+            categoriaDomainAtual = CategoriaDomainResponse.builder()
+                    .id(categoriaDomainAtual.getId())
+                    .nome(categorianNew.getNome())
+                    .build();
 
-        return categoriaGateway.updateCategory(categoriaDomainAtual);
+            return categoriaGateway.updateCategory(categoriaDomainAtual);
     }
 
     public CategoriaDomainResponse buscarCategoriaPorID(Long idCategoria) {
-        return categoriaGateway.findCategoryWithId(idCategoria);
+        CategoriaDomainResponse category = categoriaGateway.findCategoryWithId(idCategoria);
+
+            return categoriaGateway.findCategoryWithId(idCategoria);
     }
 
     public void removerCategoriaPorID(Long idCategoria) {

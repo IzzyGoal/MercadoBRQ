@@ -9,6 +9,7 @@ import com.mercadobrq.www.MercadoBRQ.usecase.domain.response.CategoriaDomainResp
 import com.mercadobrq.www.MercadoBRQ.usecase.gateway.CategoriaGateway;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
+
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
@@ -70,6 +71,7 @@ public class CategoriaImplementation implements CategoriaGateway {
      * repositorio da aplicação.
      * @param idCategory {@code Long} -
      */
+    @Transactional
     @Override
     public void deleteCategoryWithId(Long idCategory) {
         categoriaRepository.deleteById(idCategory);
@@ -88,6 +90,13 @@ public class CategoriaImplementation implements CategoriaGateway {
         CategoriaEntity categoria = categoriaRepository.save(newCategory);
 
         return CategoriaMapperResponse.toDomain(categoria);
+    }
+
+    @Override
+    public CategoriaDomainResponse findCategoryWithName(String nome) {
+        CategoriaEntity category = categoriaRepository.findByNome(nome);
+
+        return CategoriaMapperResponse.toDomain(category);
     }
 
 }

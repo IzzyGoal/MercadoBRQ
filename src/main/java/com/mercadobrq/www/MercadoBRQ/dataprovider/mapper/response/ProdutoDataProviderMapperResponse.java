@@ -2,6 +2,8 @@ package com.mercadobrq.www.MercadoBRQ.dataprovider.mapper.response;
 
 import com.mercadobrq.www.MercadoBRQ.dataprovider.entity.ProdutoEntity;
 import com.mercadobrq.www.MercadoBRQ.usecase.domain.response.ProdutoDomainResponse;
+import org.springframework.data.domain.Page;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,9 +46,7 @@ public class ProdutoDataProviderMapperResponse {
      * @param product {@code ProdutoEntity } - Entidade de produto.
      * @return ProdutoDataProviderMapperResponse
      */
-    public static List<ProdutoDomainResponse> toCollectionDomain(List<ProdutoEntity> product) {
-        return product.stream()
-                .map(ProdutoDataProviderMapperResponse::toDomain)
-                .collect(Collectors.toList());
+    public static Page<ProdutoDomainResponse> toCollectionDomain(Page<ProdutoEntity> product) {
+        return product.map(ProdutoDataProviderMapperResponse::toDomain);
     }
 }

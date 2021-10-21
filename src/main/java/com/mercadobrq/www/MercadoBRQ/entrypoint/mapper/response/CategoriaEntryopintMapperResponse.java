@@ -24,9 +24,6 @@ public class CategoriaEntryopintMapperResponse {
     }
 
     public static CategoriaModelResponse toModel(CategoriaDomainResponse categoriaDomainResponse) {
-        if (Objects.isNull(categoriaDomainResponse)){
-            return CategoriaModelResponse.builder().build();
-        }
         return CategoriaModelResponse.builder()
                 .id(categoriaDomainResponse.getId())
                 .nome(categoriaDomainResponse.getNome())

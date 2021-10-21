@@ -2,14 +2,16 @@ package com.mercadobrq.www.MercadoBRQ.usecase;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mercadobrq.www.MercadoBRQ.usecase.domain.request.ProdutoDomainRequest;
+import com.mercadobrq.www.MercadoBRQ.usecase.domain.request.ProdutoParameterModelResquest;
 import com.mercadobrq.www.MercadoBRQ.usecase.domain.response.ProdutoDomainResponse;
 import com.mercadobrq.www.MercadoBRQ.usecase.gateway.ProdutoGateway;
 import lombok.AllArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
-
 import java.lang.reflect.Field;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,14 +25,10 @@ import java.util.Map;
 @Service
 public class ProdutoUseCase {
 
-    private ProdutoGateway produtoGateway;
+    private final ProdutoGateway produtoGateway;
 
     public ProdutoDomainResponse addProduct(ProdutoDomainRequest product) {
         return produtoGateway.addProduct(product);
-    }
-
-    public List<ProdutoDomainResponse> searchAll() {
-        return produtoGateway.searchAll();
     }
 
     public ProdutoDomainResponse findProductWithId(Long idProduct) {
@@ -75,5 +73,15 @@ public class ProdutoUseCase {
 
             ReflectionUtils.setField(field, product, newValue);
         });
+    }
+
+    public Page<ProdutoDomainResponse> SearchAllProductWhitParameters(Pageable pageable, ProdutoParameterModelResquest product) {
+        if (StringUtils.isNotBlank(product.getNomeCategoria())) {
+            return produtoGateway.searchProductforCategory(pageable,product.getNomeCategoria());
+        }
+        if (StringUtils.isNotBlank(product.getMarca())) {
+            return  produtoGateway.searchProductforBrand(pageable, product.getMarca());
+        }
+        return produtoGateway.searchAllProduct(pageable);
     }
 }

@@ -21,4 +21,6 @@ public interface CategoriaGateway {
     void deleteCategoryWithId(Long idCategoria);
 
     CategoriaDomainResponse updateCategory(CategoriaDomainResponse categoriaAtual);
+
+    CategoriaDomainResponse findCategoryWithName(String nome);
 }

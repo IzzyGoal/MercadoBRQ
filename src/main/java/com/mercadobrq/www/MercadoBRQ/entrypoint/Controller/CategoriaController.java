@@ -46,7 +46,7 @@ public class CategoriaController {
      */
     @GetMapping
     public ResponseEntity<List<CategoriaModelResponse>> search() {
-        List<CategoriaDomainResponse> categoria = categoriaUseCase.buscarCategoria();
+        List<CategoriaDomainResponse> categoria = categoriaUseCase.buscarCategorias();
         List<CategoriaModelResponse> categoriaModel = CategoriaEntryopintMapperResponse.toCollectionModel(categoria);
 
         return ResponseEntity.ok(categoriaModel);
