@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Classe responsavel por intermediar a operação logica da aplicação e a comunicação com o banco de dados
@@ -28,7 +27,7 @@ public class CategoriaUseCase {
     }
 
     public List<CategoriaDomainResponse> buscarCategorias() {
-        return  categoriaGateway.findCategory();
+        return  categoriaGateway.sarchAll();
     }
 
     private CategoriaDomainResponse findCatgeoryWithName(String name) {

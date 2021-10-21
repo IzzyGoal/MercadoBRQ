@@ -17,8 +17,6 @@ public interface ProdutoGateway {
 
     ProdutoDomainResponse findWithID(Long idProduct);
 
-    ProdutoDomainResponse updateProduct(ProdutoDomainResponse newProduct);
-
     ProdutoDomainResponse partiallyUpdate(ProdutoDomainResponse productChanged);
 
     void deleteProduct(Long idProduct);

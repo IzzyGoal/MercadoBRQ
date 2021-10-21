@@ -14,7 +14,7 @@ public interface CategoriaGateway {
 
     CategoriaDomainResponse addCategory(CategoriaDomainRequest categoriaDomainRequest);
 
-    List<CategoriaDomainResponse> findCategory();
+    List<CategoriaDomainResponse> sarchAll();
 
     CategoriaDomainResponse findCategoryWithId(Long idCategoria);
 

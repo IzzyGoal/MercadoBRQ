@@ -44,17 +44,8 @@ public class ProdutoImplementation implements ProdutoGateway {
 
     @Transactional
     @Override
-    public ProdutoDomainResponse updateProduct(ProdutoDomainResponse newProduct) {
-        ProdutoEntity product = ProdutoDataProviderMapperResquest.toEntityUpdate(newProduct);
-        ProdutoEntity savedProduct = produtoRepository.save(product);
-
-        return ProdutoDataProviderMapperResponse.toDomain(savedProduct);
-    }
-
-    @Transactional
-    @Override
-    public ProdutoDomainResponse partiallyUpdate(ProdutoDomainResponse productChanged) {
-        ProdutoEntity newProduct = ProdutoDataProviderMapperResquest.toEntityUpdate(productChanged);
+    public ProdutoDomainResponse partiallyUpdate(ProdutoDomainResponse product) {
+        ProdutoEntity newProduct = ProdutoDataProviderMapperResquest.toEntityUpdate(product);
         ProdutoEntity savedProduct = produtoRepository.save(newProduct);
 
         return ProdutoDataProviderMapperResponse.toDomain(savedProduct);
@@ -64,26 +55,27 @@ public class ProdutoImplementation implements ProdutoGateway {
     @Override
     public void deleteProduct(Long idProduct) {
         produtoRepository.deleteById(idProduct);
+        produtoRepository.flush();
     }
 
     @Override
-    public Page<ProdutoDomainResponse> searchProductforCategory(Pageable pageable, String category) {
-        Page<ProdutoEntity> productForCategory = produtoRepository.findByCategoria(pageable,category);
+    public Page<ProdutoDomainResponse> searchProductforCategory(Pageable pageable, String nomeCategoria) {
+        Page<ProdutoEntity> productsForCategory = produtoRepository.findByCategoria(pageable,nomeCategoria);
 
-        return ProdutoDataProviderMapperResponse.toCollectionDomain(productForCategory);
+        return ProdutoDataProviderMapperResponse.toCollectionDomain(productsForCategory);
     }
 
     @Override
-    public Page<ProdutoDomainResponse> searchProductforBrand(Pageable pageable, String brand) {
-        Page<ProdutoEntity> productForBrand = produtoRepository.findByMarca(pageable,brand);
+    public Page<ProdutoDomainResponse> searchProductforBrand(Pageable pageable, String marca) {
+        Page<ProdutoEntity> productForBrand = produtoRepository.findByMarca(pageable,marca);
 
         return ProdutoDataProviderMapperResponse.toCollectionDomain(productForBrand);
     }
 
     @Override
     public Page<ProdutoDomainResponse> searchAllProduct(Pageable pageable) {
-        Page<ProdutoEntity> produtos = produtoRepository.findAll(pageable);
+        Page<ProdutoEntity> product = produtoRepository.findAll(pageable);
 
-        return ProdutoDataProviderMapperResponse.toCollectionDomain(produtos);
+        return ProdutoDataProviderMapperResponse.toCollectionDomain(product);
     }
 }

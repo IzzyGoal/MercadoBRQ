@@ -17,8 +17,7 @@ import java.math.BigDecimal;
 @Entity
 @Builder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@Table(name = "tab_produto")
-
+@Table(name = "produto")
 public class ProdutoEntity {
     @Id
     @EqualsAndHashCode.Include

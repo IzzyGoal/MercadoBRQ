@@ -16,7 +16,7 @@ import javax.persistence.*;
 @Entity
 @Builder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@Table(name ="tab_categoria")
+@Table(name ="categoria")
 public class CategoriaEntity {
 
     @Id

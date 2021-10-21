@@ -47,7 +47,7 @@ public class CategoriaImplementation implements CategoriaGateway {
      * @return CategoriaDomainRequest
      */
     @Override
-    public List<CategoriaDomainResponse> findCategory() {
+    public List<CategoriaDomainResponse> sarchAll() {
         List<CategoriaEntity> categorias = categoriaRepository.findAll();
 
         return CategoriaMapperResponse.toCollectionDomain(categorias);
@@ -60,7 +60,7 @@ public class CategoriaImplementation implements CategoriaGateway {
      * @return CategoriaMapperResponse
      */
     @Override
-    public CategoriaDomainResponse findCategoryWithId( Long idCategory) {
+    public CategoriaDomainResponse findCategoryWithId(Long idCategory) {
         Optional<CategoriaEntity> categoriaEntity = categoriaRepository.findById(idCategory);
 
         return CategoriaMapperResponse.toDomain(categoriaEntity.get());
@@ -75,6 +75,7 @@ public class CategoriaImplementation implements CategoriaGateway {
     @Override
     public void deleteCategoryWithId(Long idCategory) {
         categoriaRepository.deleteById(idCategory);
+        categoriaRepository.flush();
     }
 
     /**
@@ -98,5 +99,4 @@ public class CategoriaImplementation implements CategoriaGateway {
 
         return CategoriaMapperResponse.toDomain(category);
     }
-
 }

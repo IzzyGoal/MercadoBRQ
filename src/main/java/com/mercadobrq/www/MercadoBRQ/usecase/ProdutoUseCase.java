@@ -13,6 +13,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 import java.lang.reflect.Field;
 import java.util.Map;
+import java.util.Objects;
+
+import static com.mercadobrq.www.MercadoBRQ.usecase.utils.ProdutoUseCaseUtils.CheckIfProductExist;
 
 /**
  * Classe responsavel por intermediar a operação logica da aplicação e a comunicação com o banco de dados
@@ -32,7 +35,11 @@ public class ProdutoUseCase {
     }
 
     public ProdutoDomainResponse findProductWithId(Long idProduct) {
-        return produtoGateway.findWithID(idProduct);
+
+        ProdutoDomainResponse product = produtoGateway.findWithID(idProduct);
+        CheckIfProductExist(product, idProduct);
+
+        return product;
     }
 
     public void deleteProduct( Long idProduct){
