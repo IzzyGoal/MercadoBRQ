@@ -18,21 +18,10 @@ public class ProdutoEntrypointMapperRequest {
 
     /**
      * Meotodo respponsavel por promover informação de requisição ao dominio produto.
-     * @param product {@code ProdutoModelRequest} -
+     * @param productModel {@code ProdutoModelRequest} -
      * @return ProdutoDomainRequest
      */
-    public static ProdutoDomainRequest toDomain(ProdutoModelRequest product) {
-        return ProdutoDomainRequest.builder()
-                .nome(product.getNome())
-                .descricao(product.getDescricao())
-                .marca(product.getMarca())
-                .quantidade(product.getQuantidade())
-                .preco(product.getPreco())
-                .categoria(CategoriaEntrypointMapperRequest.toDomainProduct(product.getCategoria()))
-                .build();
-    }
-
-    public static ProdutoDomainRequest toDomainUpdate(ProdutoModelRequest productModel) {
+    public static ProdutoDomainRequest toDomainAdd(ProdutoModelRequest productModel) {
         return  ProdutoDomainRequest.builder()
                 .nome(productModel.getNome())
                 .descricao(productModel.getDescricao())

@@ -32,7 +32,7 @@ public class CategoriaController {
      * @return ResponseEntity - devolve Http 200 após a criação
      */
     @PostMapping
-    public ResponseEntity<CategoriaModelResponse> add(@RequestBody CategoriaModelRequest categoriaModelRequest) {
+    public ResponseEntity<CategoriaModelResponse> add(@RequestBody  CategoriaModelRequest categoriaModelRequest) {
        CategoriaDomainRequest categoriaDomainRequest = CategoriaEntrypointMapperRequest.toDomain(categoriaModelRequest);
        CategoriaDomainResponse categoriaDomainResponse = categoriaUseCase.cadastrarCategoria(categoriaDomainRequest);
        CategoriaModelResponse categoriaModelResponse = CategoriaEntryopintMapperResponse.toModel(categoriaDomainResponse);
@@ -46,10 +46,13 @@ public class CategoriaController {
      */
     @GetMapping
     public ResponseEntity<List<CategoriaModelResponse>> search() {
-        List<CategoriaDomainResponse> categoria = categoriaUseCase.buscarCategorias();
-        List<CategoriaModelResponse> categoriaModel = CategoriaEntryopintMapperResponse.toCollectionModel(categoria);
+        List<CategoriaDomainResponse> categoriasDomain = categoriaUseCase.buscarCategorias();
+        List<CategoriaModelResponse> categoriasModel = CategoriaEntryopintMapperResponse.toCollectionModel(categoriasDomain);
+        if (categoriasModel.isEmpty()) {
 
-        return ResponseEntity.ok(categoriaModel);
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(categoriasModel);
     }
 
     /**
@@ -84,7 +87,7 @@ public class CategoriaController {
     /**
      * Rceurso para deletar uma categoria
      * @param idCategoria {@code Long} -
-     * @return ResponseEntity apos a deleção retorna um obejto vazio VOID.
+     * @return void - ResponseEntity apos a deleção retorna um obejto vazio VOID.
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCategory(@PathVariable("id") Long idCategoria) {

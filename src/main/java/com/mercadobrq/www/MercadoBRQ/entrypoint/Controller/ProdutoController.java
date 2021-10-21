@@ -15,7 +15,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Map;
 
 /**
@@ -38,7 +37,7 @@ public class ProdutoController {
      */
     @PostMapping
     public ResponseEntity<ProdutoModelResponse> addProduct(@RequestBody ProdutoModelRequest product) {
-        ProdutoDomainRequest produtoDomainRequest = ProdutoEntrypointMapperRequest.toDomain(product);
+        ProdutoDomainRequest produtoDomainRequest = ProdutoEntrypointMapperRequest.toDomainAdd(product);
         ProdutoDomainResponse produtoDomainResponse = produtoUseCase.addProduct(produtoDomainRequest);
         ProdutoModelResponse produtoModelResponse = ProdutoEntrypointMapperResponse.toModel(produtoDomainResponse);
 
@@ -70,16 +69,17 @@ public class ProdutoController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<ProdutoModelResponse> findWithId(@PathVariable("id") Long idProduct) {
-        ProdutoDomainResponse produtoDomainResponse = produtoUseCase.findProductWithId(idProduct);
-        ProdutoModelResponse product = ProdutoEntrypointMapperResponse.toModel(produtoDomainResponse);
 
-        return ResponseEntity.ok(product);
+        ProdutoDomainResponse produtoDomainResponse = produtoUseCase.findProductWithId(idProduct);
+        ProdutoModelResponse productModel = ProdutoEntrypointMapperResponse.toModel(produtoDomainResponse);
+
+        return ResponseEntity.ok(productModel);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<ProdutoModelResponse> update(@PathVariable("id") Long idProduct,
                                                         @RequestBody ProdutoModelRequest productModel) {
-        ProdutoDomainRequest productdomain = ProdutoEntrypointMapperRequest.toDomainUpdate(productModel);
+        ProdutoDomainRequest productdomain = ProdutoEntrypointMapperRequest.toDomainAdd(productModel);
         ProdutoDomainResponse productResponse = produtoUseCase.updateProduct(idProduct,productdomain);
         ProdutoModelResponse produtoModelResponse = ProdutoEntrypointMapperResponse.toModel(productResponse);
 
