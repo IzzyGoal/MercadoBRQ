@@ -2,7 +2,6 @@ package com.mercadobrq.www.MercadoBRQ.entrypoint.mapper.response;
 
 import com.mercadobrq.www.MercadoBRQ.entrypoint.model.response.CategoriaModelResponse;
 import com.mercadobrq.www.MercadoBRQ.usecase.domain.response.CategoriaDomainResponse;
-
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -24,12 +23,15 @@ public class CategoriaEntryopintMapperResponse {
     }
 
     public static CategoriaModelResponse toModel(CategoriaDomainResponse categoriaDomainResponse) {
+        if (Objects.isNull(categoriaDomainResponse)) {
+            return CategoriaModelResponse.builder().build();
+        }
+
         return CategoriaModelResponse.builder()
                 .id(categoriaDomainResponse.getId())
                 .nome(categoriaDomainResponse.getNome())
                 .build();
     }
-
 }
 
 

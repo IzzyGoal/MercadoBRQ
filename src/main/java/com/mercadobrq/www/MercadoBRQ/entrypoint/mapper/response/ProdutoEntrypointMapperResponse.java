@@ -5,7 +5,6 @@ import com.mercadobrq.www.MercadoBRQ.entrypoint.model.response.ProdutoModelRespo
 import com.mercadobrq.www.MercadoBRQ.entrypoint.model.response.ProdutoModelResponseShort;
 import com.mercadobrq.www.MercadoBRQ.usecase.domain.response.ProdutoDomainResponse;
 import org.springframework.data.domain.Page;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
