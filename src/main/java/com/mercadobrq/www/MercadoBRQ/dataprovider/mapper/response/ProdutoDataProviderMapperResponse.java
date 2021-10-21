@@ -4,9 +4,6 @@ import com.mercadobrq.www.MercadoBRQ.dataprovider.entity.ProdutoEntity;
 import com.mercadobrq.www.MercadoBRQ.usecase.domain.response.ProdutoDomainResponse;
 import org.springframework.data.domain.Page;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 /**
  * Classe resposavel por mappear e transportar informação entre dominio e entidade.
  *
@@ -18,8 +15,7 @@ public class ProdutoDataProviderMapperResponse {
     /**
      * Construtor vazio para evitar instanciação.
      */
-    private ProdutoDataProviderMapperResponse() {
-    }
+    private ProdutoDataProviderMapperResponse() {}
 
     /**
      * Metodo responsavel por gerar um corpto de resposta para o dominio.
@@ -43,10 +39,11 @@ public class ProdutoDataProviderMapperResponse {
 
     /**
      * Metodo repsonsavel por gerar uma lista de respostas para o dominio.
-     * @param product {@code ProdutoEntity } - Entidade de produto.
+     * @param productEntities {@code ProdutoEntity } - Entidade de produto.
      * @return ProdutoDataProviderMapperResponse
      */
-    public static Page<ProdutoDomainResponse> toCollectionDomain(Page<ProdutoEntity> product) {
-        return product.map(ProdutoDataProviderMapperResponse::toDomain);
+    public static Page<ProdutoDomainResponse> toCollectionDomain(Page<ProdutoEntity> productEntities) {
+
+        return productEntities.map(ProdutoDataProviderMapperResponse::toDomain);
     }
 }

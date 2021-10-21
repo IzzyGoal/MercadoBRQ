@@ -1,6 +1,6 @@
-package com.mercadobrq.www.MercadoBRQ.usecase.Exceptions;
+package com.mercadobrq.www.MercadoBRQ.usecase.exceptions;
 
-public class ProductNotExistException extends RuntimeException{
+public class ProductNotExistException extends EntityNotFound{
 
     private static final long serialVersionUID= 1L;
 

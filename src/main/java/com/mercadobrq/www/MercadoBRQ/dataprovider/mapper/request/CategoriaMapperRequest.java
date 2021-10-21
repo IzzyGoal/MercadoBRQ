@@ -49,7 +49,7 @@ public class CategoriaMapperRequest {
      * @return 1. se nao existir uma categoria ele retornará um objeto vazio.
      *         2. se existir retornará suas informações.
      */
-    public static CategoriaEntity toEntityProduct(CategoriaDomainRequest category) {
+    public static CategoriaEntity toProvideID(CategoriaDomainRequest category) {
         if (Objects.isNull(category)) {
             return CategoriaEntity.builder().build();
         }
@@ -64,11 +64,10 @@ public class CategoriaMapperRequest {
      * @return 1. se nao existir uma categoria ele retornará um objeto vazio.
      *         2. se existir retornará suas informações.
      */
-    public static CategoriaEntity toEntityProductAtualizado(CategoriaDomainResponse category) {
+    public static CategoriaEntity toProvideIDUpdate(CategoriaDomainResponse category) {
         if (Objects.isNull(category)) {
             return CategoriaEntity.builder().build();
         }
-
         return CategoriaEntity.builder()
                 .id(category.getId())
                 .build();

@@ -33,7 +33,7 @@ public class ProdutoDataProviderMapperResquest {
                 .ativo(true)
                 .ofertado(false)
                 .porcetagem(0)
-                .categoria(CategoriaMapperRequest.toEntityProduct((product.getCategoria())))
+                .categoria(CategoriaMapperRequest.toProvideID((product.getCategoria())))
                 .build();
     }
 
@@ -53,7 +53,7 @@ public class ProdutoDataProviderMapperResquest {
                 .ativo(product.getAtivo())
                 .ofertado(product.getOfertado())
                 .porcetagem(product.getPorcentagem())
-                .categoria(CategoriaMapperRequest.toEntityProductAtualizado(product.getCategoria()))
+                .categoria(CategoriaMapperRequest.toProvideIDUpdate(product.getCategoria()))
                 .build();
     }
 }

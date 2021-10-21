@@ -14,7 +14,8 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ProdutoRepository  extends JpaRepository<ProdutoEntity, Long> {
-    Page<ProdutoEntity> findByCategoria(Pageable pageable, String category);
 
-    Page<ProdutoEntity> findByMarca(Pageable pageable, String brand);
+    Page<ProdutoEntity> findByCategoria(Pageable pageable, String nomeCategoria);
+
+    Page<ProdutoEntity> findByMarca(Pageable pageable, String marca);
 }

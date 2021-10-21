@@ -3,6 +3,7 @@ package com.mercadobrq.www.MercadoBRQ.dataprovider.mapper.response;
 import com.mercadobrq.www.MercadoBRQ.dataprovider.entity.CategoriaEntity;
 import com.mercadobrq.www.MercadoBRQ.usecase.domain.response.CategoriaDomainResponse;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -21,23 +22,26 @@ public class CategoriaMapperResponse {
 
     /**
      * Metodo responsavel por conter a informação de entidade a camada de dominio.
-     * @param categoria {@code CategoriaEntity} -
+     * @param category {@code CategoriaEntity} -
      * @return CategoriaDomainResponse
      */
-    public static CategoriaDomainResponse toDomain(CategoriaEntity categoria) {
+    public static CategoriaDomainResponse toDomain(CategoriaEntity category) {
+        if (Objects.isNull(category)) {
+            CategoriaDomainResponse.builder().build();
+        }
         return CategoriaDomainResponse.builder()
-                .id(categoria.getId())
-                .nome(categoria.getNome())
+                .id(category.getId())
+                .nome(category.getNome())
                 .build();
     }
 
     /**
      * Metodo que transforma uma lista de categoria em uma stream e devolve uma lista de categorias.
-     * @param categoriaEntities {@code CategoriaEntity}
+     * @param categoryEntities {@code CategoriaEntity}
      * @return categoriaEntities
      */
-    public static List<CategoriaDomainResponse> toCollectionDomain(List<CategoriaEntity> categoriaEntities) {
-        return categoriaEntities.stream()
+    public static List<CategoriaDomainResponse> toCollectionDomain(List<CategoriaEntity> categoryEntities) {
+        return categoryEntities.stream()
                 .map(CategoriaMapperResponse::toDomain)
                 .collect(Collectors.toList());
     }

@@ -1,6 +1,6 @@
 package com.mercadobrq.www.MercadoBRQ.usecase.utils;
 
-import com.mercadobrq.www.MercadoBRQ.usecase.Exceptions.ProductNotExistException;
+import com.mercadobrq.www.MercadoBRQ.usecase.exceptions.ProductNotExistException;
 import com.mercadobrq.www.MercadoBRQ.usecase.domain.response.ProdutoDomainResponse;
 
 import java.util.Objects;
