@@ -1,5 +1,6 @@
 package com.mercadobrq.www.MercadoBRQ.entrypoint.Controller.exceptions;
 
+import com.mercadobrq.www.MercadoBRQ.usecase.exceptions.EntityAlreadyExistsException;
 import com.mercadobrq.www.MercadoBRQ.usecase.exceptions.EntityNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -22,6 +23,15 @@ public class HandlerExceptions extends ResponseEntityExceptionHandler {
         MensagemExceptionModelResponse menssage = exceptionAnswer(httpStatus,ex);
 
         return ResponseEntity.status(httpStatus).body(menssage);
+    }
+
+    @ExceptionHandler(EntityAlreadyExistsException.class)
+    public final ResponseEntity<?> handlerEntityAlreadyPresent(Exception ex) {
+        HttpStatus httpStatus = HttpStatus.UNPROCESSABLE_ENTITY;
+
+        MensagemExceptionModelResponse mensagemExceptionModelResponse = exceptionAnswer(httpStatus,ex);
+
+        return ResponseEntity.status(httpStatus).body(mensagemExceptionModelResponse);
     }
 
     private MensagemExceptionModelResponse exceptionAnswer(HttpStatus httpStatus, Exception ex) {

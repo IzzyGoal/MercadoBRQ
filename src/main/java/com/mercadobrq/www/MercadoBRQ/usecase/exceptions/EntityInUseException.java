@@ -1,10 +1,10 @@
 package com.mercadobrq.www.MercadoBRQ.usecase.exceptions;
 
-public class EntityInUSeException extends RuntimeException{
+public class EntityInUseException extends RuntimeException{
 
     private static final long serialVersionUID = 1L;
 
-    public EntityInUSeException(String menssagem) {
+    public EntityInUseException(String menssagem) {
         super(menssagem);
     }
 }

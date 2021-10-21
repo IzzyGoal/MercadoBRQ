@@ -3,8 +3,13 @@ package com.mercadobrq.www.MercadoBRQ.usecase;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mercadobrq.www.MercadoBRQ.usecase.domain.request.ProdutoDomainRequest;
 import com.mercadobrq.www.MercadoBRQ.entrypoint.model.request.ProdutoParameterModelResquest;
+import com.mercadobrq.www.MercadoBRQ.usecase.domain.response.CategoriaDomainResponse;
 import com.mercadobrq.www.MercadoBRQ.usecase.domain.response.ProdutoDomainResponse;
+import com.mercadobrq.www.MercadoBRQ.usecase.exceptions.BadResquestPostException;
+import com.mercadobrq.www.MercadoBRQ.usecase.gateway.CategoriaGateway;
 import com.mercadobrq.www.MercadoBRQ.usecase.gateway.ProdutoGateway;
+import com.mercadobrq.www.MercadoBRQ.usecase.utils.CategoriaUseCaseUtils;
+import com.mercadobrq.www.MercadoBRQ.usecase.utils.ProdutoUseCaseUtils;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
@@ -13,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 import java.lang.reflect.Field;
 import java.util.Map;
+import java.util.Objects;
 
 import static com.mercadobrq.www.MercadoBRQ.usecase.utils.ProdutoUseCaseUtils.CheckIfProductExist;
 
@@ -28,8 +34,14 @@ import static com.mercadobrq.www.MercadoBRQ.usecase.utils.ProdutoUseCaseUtils.Ch
 public class ProdutoUseCase {
 
     private final ProdutoGateway produtoGateway;
+    private final CategoriaGateway categoriaGateway;
 
     public ProdutoDomainResponse addProduct(ProdutoDomainRequest product) {
+        Long idCategoria = product.getCategoria().getId();
+
+        CategoriaDomainResponse category = categoriaGateway.findCategoryWithId(idCategoria);
+        CategoriaUseCaseUtils.checkIfCategoryAlreadyExist(idCategoria,category);
+
         return produtoGateway.addProduct(product);
     }
 
@@ -42,25 +54,10 @@ public class ProdutoUseCase {
     }
 
     public void deleteProduct( Long idProduct){
+
         produtoGateway.deleteProduct(idProduct);
     }
 
-    public ProdutoDomainResponse updateProduct(Long idProduct, ProdutoDomainRequest product) {
-        ProdutoDomainResponse productNow = findProductWithId(idProduct);
-        productNow = ProdutoDomainResponse.builder()
-                .id(productNow.getId())
-                .nome(product.getNome())
-                .descricao(product.getDescricao())
-                .marca(product.getMarca())
-                .quantidade(product.getQuantidade())
-                .preco(product.getPreco())
-                .ativo(product.getAtivo())
-                .ofertado(product.getOfertado())
-                .porcentagem(product.getPorcentagem())
-                .build();
-
-        return produtoGateway.updateProduct(productNow);
-    }
     public ProdutoDomainResponse partiallyUpdate(Long idProduct, Map<String, Object> newData) {
 
         ProdutoDomainResponse product = produtoGateway.findWithID(idProduct);
@@ -69,25 +66,37 @@ public class ProdutoUseCase {
         return produtoGateway.partiallyUpdate(product);
     }
 
-    private void merge(Map<String, Object> newDataProduct, ProdutoDomainResponse product) {
-        var objectMapper = new ObjectMapper();
-        ProdutoDomainResponse ProductOrigin = objectMapper.convertValue(newDataProduct, ProdutoDomainResponse.class);
-        newDataProduct.forEach((name, value) -> {
-            Field field = ReflectionUtils.findField(ProdutoDomainResponse.class, name);
-            field.setAccessible(true);
-            Object newValue = ReflectionUtils.getField(field,ProductOrigin);
-
-            ReflectionUtils.setField(field, product, newValue);
-        });
-    }
-
     public Page<ProdutoDomainResponse> SearchAllProductWhitParameters(Pageable pageable, ProdutoParameterModelResquest product) {
         if (StringUtils.isNotBlank(product.getNomeCategoria())) {
-            return produtoGateway.searchProductforCategory(pageable,product.getNomeCategoria());
+            return produtoGateway.searchProductforCategory(pageable, product.getNomeCategoria());
         }
         if (StringUtils.isNotBlank(product.getMarca())) {
             return  produtoGateway.searchProductforBrand(pageable, product.getMarca());
         }
         return produtoGateway.searchAllProduct(pageable);
     }
+
+    private void merge(Map<String, Object> newDataProduct, ProdutoDomainResponse product) {
+        var objectMapper = new ObjectMapper();
+
+        ProdutoDomainResponse productOrigin = objectMapper.convertValue(newDataProduct, ProdutoDomainResponse.class);
+        checkIfIdAreBeNull(productOrigin);
+        newDataProduct.forEach((name, value) -> {
+            Field field = ReflectionUtils.findField(ProdutoDomainResponse.class, name);
+            field.setAccessible(true);
+            Object newValue = ReflectionUtils.getField(field, productOrigin);
+
+            ReflectionUtils.setField(field, product, newValue);
+        });
+    }
+
+    private void checkIfIdAreBeNull(ProdutoDomainResponse productOrigin) {
+            if (Objects.nonNull(productOrigin.getCategoria())) {
+                if (Objects.nonNull(productOrigin.getCategoria().getId())) {
+                    CategoriaDomainResponse categoriaDomainResponse = categoriaGateway.findCategoryWithId(productOrigin.getId());
+
+                  CategoriaUseCaseUtils.checkIfCategoryAlreadyExist(productOrigin.getCategoria().getId(), categoriaDomainResponse);
+                }
+            }
+        }
 }
