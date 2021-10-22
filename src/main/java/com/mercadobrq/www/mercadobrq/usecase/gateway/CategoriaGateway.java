@@ -1,0 +1,26 @@
+package com.mercadobrq.www.mercadobrq.usecase.gateway;
+
+import com.mercadobrq.www.mercadobrq.usecase.domain.request.CategoriaDomainRequest;
+import com.mercadobrq.www.mercadobrq.usecase.domain.response.CategoriaDomainResponse;
+import java.util.List;
+
+/**
+ * Interface dos recursos logicos da aplicação.
+ *
+ * @author Gabriel Silva Lima
+ * @since 30/09/2021
+ */
+public interface CategoriaGateway {
+
+    CategoriaDomainResponse addCategory(CategoriaDomainRequest categoriaDomainRequest);
+
+    List<CategoriaDomainResponse> sarchAll();
+
+    CategoriaDomainResponse findCategoryWithId(Long idCategoria);
+
+    void deleteCategoryWithId(Long idCategoria);
+
+    CategoriaDomainResponse updateCategory(CategoriaDomainResponse categoriaAtual);
+
+    CategoriaDomainResponse findCategoryWithName(String nome);
+}
