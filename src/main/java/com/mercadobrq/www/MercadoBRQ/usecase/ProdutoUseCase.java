@@ -80,7 +80,6 @@ public class ProdutoUseCase {
         var objectMapper = new ObjectMapper();
 
         ProdutoDomainResponse productOrigin = objectMapper.convertValue(newDataProduct, ProdutoDomainResponse.class);
-        checkIfIdAreBeNull(productOrigin);
         newDataProduct.forEach((name, value) -> {
             Field field = ReflectionUtils.findField(ProdutoDomainResponse.class, name);
             field.setAccessible(true);
@@ -89,14 +88,4 @@ public class ProdutoUseCase {
             ReflectionUtils.setField(field, product, newValue);
         });
     }
-
-    private void checkIfIdAreBeNull(ProdutoDomainResponse productOrigin) {
-            if (Objects.nonNull(productOrigin.getCategoria())) {
-                if (Objects.nonNull(productOrigin.getCategoria().getId())) {
-                    CategoriaDomainResponse categoriaDomainResponse = categoriaGateway.findCategoryWithId(productOrigin.getId());
-
-                  CategoriaUseCaseUtils.checkIfCategoryAlreadyExist(productOrigin.getCategoria().getId(), categoriaDomainResponse);
-                }
-            }
-        }
 }

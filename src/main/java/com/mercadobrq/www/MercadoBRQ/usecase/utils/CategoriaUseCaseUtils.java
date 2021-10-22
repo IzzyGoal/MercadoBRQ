@@ -43,5 +43,11 @@ public class CategoriaUseCaseUtils {
                     String.format(MENSAGEM_CATEGORIA_JA_EXISTE_NOME,categorianNew.getNome()));
         }
     }
+
+    public static void checkIfCategoryAlreadyExistForProduct(Long id, CategoriaDomainResponse categoriaDomainResponse) {
+        if (Objects.isNull(categoriaDomainResponse.getId())){
+            throw new BadResquestPostException(String.format(MENSAGEM_CATEGORIA_NAO_ENCONTRADA, id));
+        }
+    }
 }
 

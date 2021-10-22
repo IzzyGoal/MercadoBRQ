@@ -21,9 +21,9 @@ public interface ProdutoGateway {
 
     void deleteProduct(Long idProduct);
 
-    Page<ProdutoDomainResponse> searchProductforCategory(Pageable pageable, String Category);
+    Page<ProdutoDomainResponse> searchProductforCategory(Pageable pageable, String nomeCategoria);
 
-    Page<ProdutoDomainResponse> searchProductforBrand(Pageable pageable, String Brand);
+    Page<ProdutoDomainResponse> searchProductforBrand(Pageable pageable, String marca);
 
     Page<ProdutoDomainResponse> searchAllProduct(Pageable pageable);
 }

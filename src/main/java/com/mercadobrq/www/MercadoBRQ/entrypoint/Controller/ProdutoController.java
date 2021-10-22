@@ -53,9 +53,7 @@ public class ProdutoController {
                                                                             ProdutoParameterModelResquest productParameter) {
         Page<ProdutoDomainResponse> produtoDomain =
                 produtoUseCase.SearchAllProductWhitParameters(pageable,productParameter);
-        if (produtoDomain.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
+
         Page<ProdutoModelResponseShort> productResponseShorts =
                 ProdutoEntrypointMapperResponse.toCollectionModelShort(produtoDomain);
 
