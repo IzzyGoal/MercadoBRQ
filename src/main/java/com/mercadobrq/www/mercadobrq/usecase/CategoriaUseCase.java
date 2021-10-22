@@ -6,6 +6,7 @@ import com.mercadobrq.www.mercadobrq.usecase.exceptions.EntityInUseException;
 import com.mercadobrq.www.mercadobrq.usecase.gateway.CategoriaGateway;
 import com.mercadobrq.www.mercadobrq.usecase.utils.CategoriaUseCaseUtils;
 import lombok.AllArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -64,7 +65,7 @@ public class CategoriaUseCase {
         buscarCategoriaPorID(idCategoria);
         try {
             categoriaGateway.deleteCategoryWithId(idCategoria);
-        } catch (Exception ex) {
+        } catch (DataIntegrityViolationException ex) {
             throw new EntityInUseException(String.format(MENSAGEM_ERRO_AO_REMOVER_CATEGORIA,idCategoria));
         }
     }
