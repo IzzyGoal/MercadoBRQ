@@ -26,8 +26,8 @@ public class CategoriaUseCase {
     private CategoriaGateway categoriaGateway;
 
     public CategoriaDomainResponse cadastrarCategoria(CategoriaDomainRequest categoriaDomainRequest) {
-        CategoriaDomainResponse categoryDomainName = findCatgeoryWithName(categoriaDomainRequest.getNome());
-        CategoriaUseCaseUtils.checkifcategoryAreBePresent(categoriaDomainRequest,categoryDomainName);
+        CategoriaDomainResponse categoriaDomainResponse = findCategoryWithName(categoriaDomainRequest.getNome());
+        CategoriaUseCaseUtils.checkifcategoryAreBePresent(categoriaDomainRequest,categoriaDomainResponse);
 
             return categoriaGateway.addCategory(categoriaDomainRequest);
     }
@@ -36,14 +36,12 @@ public class CategoriaUseCase {
         return  categoriaGateway.sarchAll();
     }
 
-    private CategoriaDomainResponse findCatgeoryWithName(String nomeCategoria) {
+    private CategoriaDomainResponse findCategoryWithName(String nomeCategoria) {
         return categoriaGateway.findCategoryWithName(nomeCategoria);
     }
 
     public CategoriaDomainResponse atualizarCategoria(Long idCategoria,CategoriaDomainRequest categorianNew) {
         CategoriaDomainResponse categoriaDomainAtual = buscarCategoriaPorID(idCategoria);
-        CategoriaDomainResponse categoriaDomainNome = findCatgeoryWithName(categoriaDomainAtual.getNome());
-        CategoriaUseCaseUtils.checkifcategoryAreBePresent(categorianNew,categoriaDomainNome);
             categoriaDomainAtual = CategoriaDomainResponse.builder()
                     .id(categoriaDomainAtual.getId())
                     .nome(categorianNew.getNome())

@@ -27,7 +27,7 @@ public class CategoriaMapperResponse {
      */
     public static CategoriaDomainResponse toDomain(CategoriaEntity category) {
         if (Objects.isNull(category)) {
-            CategoriaDomainResponse.builder().build();
+            return CategoriaDomainResponse.builder().build();
         }
         return CategoriaDomainResponse.builder()
                 .id(category.getId())

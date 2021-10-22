@@ -61,9 +61,9 @@ public class CategoriaImplementation implements CategoriaGateway {
      */
     @Override
     public CategoriaDomainResponse findCategoryWithId(Long idCategory) {
-        Optional<CategoriaEntity> categoriaEntity = categoriaRepository.findById(idCategory);
+        CategoriaEntity categoriaEntity = categoriaRepository.findById(idCategory).orElse(CategoriaEntity.builder().build());
 
-        return CategoriaMapperResponse.toDomain(categoriaEntity.get());
+        return CategoriaMapperResponse.toDomain(categoriaEntity);
     }
 
     /**

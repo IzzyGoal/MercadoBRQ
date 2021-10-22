@@ -1,9 +1,6 @@
 package com.mercadobrq.www.MercadoBRQ.usecase.domain.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 /**
  * Classe responsavel por conter o modelo de resposta do dominio de categorias.
@@ -12,6 +9,7 @@ import lombok.NoArgsConstructor;
  * @since 30/09/2021
  */
 @Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor

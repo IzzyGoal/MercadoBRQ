@@ -76,16 +76,6 @@ public class ProdutoController {
         return ResponseEntity.ok(productModel);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<ProdutoModelResponse> update(@PathVariable("id") Long idProduct,
-                                                        @RequestBody ProdutoModelRequest productModel) {
-        ProdutoDomainRequest productdomain = ProdutoEntrypointMapperRequest.toDomainAdd(productModel);
-        ProdutoDomainResponse productResponse = produtoUseCase.updateProduct(idProduct,productdomain);
-        ProdutoModelResponse produtoModelResponse = ProdutoEntrypointMapperResponse.toModel(productResponse);
-
-        return ResponseEntity.ok(produtoModelResponse);
-    }
-
     @PatchMapping("/{id}")
     public ResponseEntity<ProdutoModelResponse> partiallyUpdate(@PathVariable("id") Long idProduct,
                                                                 @RequestBody Map<String, Object> campos) {

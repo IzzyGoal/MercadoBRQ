@@ -25,7 +25,7 @@ public class CategoriaUseCaseUtils {
     }
 
     public static void checkifcategoryAreBePresent(CategoriaDomainRequest categoriaDomainRequest, CategoriaDomainResponse categoryDomainName) {
-        if (StringUtils.isNotBlank(categoriaDomainRequest.getNome())) {
+        if (StringUtils.isNotBlank(categoryDomainName.getNome())) {
             throw new EntityAlreadyExistsException(String.format(MENSAGEM_ERRO_CATEGORIA_JA_EXISTE, categoriaDomainRequest.getNome()));
         }
     }

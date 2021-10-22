@@ -1,7 +1,6 @@
 package com.mercadobrq.www.MercadoBRQ.usecase.domain.request;
 
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
 /**
  * Classe repsonsavel por conter as informações de saida da requisição do dominio.
@@ -11,8 +10,11 @@ import lombok.Getter;
  */
 @Getter
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class CategoriaDomainRequest {
 
     private Long id;
+
     private String nome;
 }
