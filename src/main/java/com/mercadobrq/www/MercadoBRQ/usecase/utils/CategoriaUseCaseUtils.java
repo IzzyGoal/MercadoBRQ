@@ -14,13 +14,14 @@ public class CategoriaUseCaseUtils {
 
     private static final String MENSAGEM_ERRO_REMOVER_CATEGORIA_EM_USO = "A categoria com o código %s, não pode ser removida, esta em uso;";
     private static final String MENSAGEM_ERRO_CATEGORIA_JA_EXISTE = "Não foi possivel criar a categoria, porque ela já existe.";
+    private static final String MENSAGEM_CATEGORIA_NAO_ENCONTRADA = "Essa Categoria nao existe.";
 
     private CategoriaUseCaseUtils() {
     }
 
     public static void checkifCategoryExist(CategoriaDomainResponse category, Long idCategoria) {
         if (Objects.isNull(category)) {
-            throw new CategoryNotFoundException(String.format(MENSAGEM_ERRO_REMOVER_CATEGORIA_EM_USO, idCategoria));
+            throw new CategoryNotFoundException(String.format(MENSAGEM_CATEGORIA_NAO_ENCONTRADA, idCategoria));
         }
     }
 

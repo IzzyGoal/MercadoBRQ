@@ -45,5 +45,15 @@ public class CategoriaMapperResponse {
                 .map(CategoriaMapperResponse::toDomain)
                 .collect(Collectors.toList());
     }
+
+    public static CategoriaDomainResponse toDomainID(CategoriaEntity categoriaEntity) {
+        if (Objects.nonNull(categoriaEntity)){
+            return CategoriaDomainResponse.builder()
+                    .id(categoriaEntity.getId())
+                    .nome(categoriaEntity.getNome())
+                    .build();
+        }
+        return null;
+    }
 }
 
