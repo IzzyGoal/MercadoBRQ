@@ -65,7 +65,7 @@ public class CategoriaUseCase {
         buscarCategoriaPorID(idCategoria);
         try {
             categoriaGateway.deleteCategoryWithId(idCategoria);
-        } catch (DataIntegrityViolationException ex) {
+        } catch (Exception ex) {
             throw new EntityInUseException(String.format(MENSAGEM_ERRO_AO_REMOVER_CATEGORIA,idCategoria));
         }
     }

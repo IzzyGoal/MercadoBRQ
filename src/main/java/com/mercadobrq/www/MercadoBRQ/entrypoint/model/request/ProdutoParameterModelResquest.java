@@ -1,9 +1,12 @@
 package com.mercadobrq.www.MercadoBRQ.entrypoint.model.request;
 
 import lombok.Getter;
+import lombok.Setter;
+
 import java.beans.ConstructorProperties;
 
 @Getter
+@Setter
 public class ProdutoParameterModelResquest {
 
     private String nomeCategoria;
