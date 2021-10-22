@@ -23,7 +23,8 @@ public class CategoriaMapperResponse {
     /**
      * Metodo responsavel por conter a informação de entidade a camada de dominio.
      * @param category {@code CategoriaEntity} -
-     * @return CategoriaDomainResponse
+     * @return 1. se categoria for nula ira retornar um construtor vazio.
+     *         2. se existir retornará suas informações.
      */
     public static CategoriaDomainResponse toDomain(CategoriaEntity category) {
         if (Objects.isNull(category)) {
@@ -46,6 +47,12 @@ public class CategoriaMapperResponse {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Metodo responsavel por verificar se o id é nullo , se nao retorna um build para validação
+     * @param categoriaEntity
+     * @return 1 se categoria nao for nula retorna as informações
+     *         2 se categoria for nulla, ela reforça o retorno nullo para posterior validação.
+     */
     public static CategoriaDomainResponse toDomainID(CategoriaEntity categoriaEntity) {
         if (Objects.nonNull(categoriaEntity)){
             return CategoriaDomainResponse.builder()

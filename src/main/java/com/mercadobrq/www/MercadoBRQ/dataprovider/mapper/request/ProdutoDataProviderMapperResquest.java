@@ -20,7 +20,7 @@ public class ProdutoDataProviderMapperResquest {
 
     /**
      * Metodo responsavel por abastecer informação a entidade de produtos.
-     * @param product {@code ProdutoDomainRequest} -
+     * @param product {@code ProdutoDomainRequest} - toda a entrada de usuriao para dominio.
      * @return ProdutoEntity
      */
     public static ProdutoEntity toEntity(ProdutoDomainRequest product) {
@@ -39,7 +39,7 @@ public class ProdutoDataProviderMapperResquest {
 
     /**
      * Metodo responsavel por atulizar as informações da entidade.
-     * @param product {@code ProdutoDomainResponse} -
+     * @param product {@code ProdutoDomainResponse} - fornece informações existentes na entidade
      * @return ProdutoEntity
      */
     public static ProdutoEntity toEntityUpdate(ProdutoDomainResponse product) {

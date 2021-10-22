@@ -9,10 +9,8 @@ import com.mercadobrq.www.MercadoBRQ.usecase.domain.response.CategoriaDomainResp
 import com.mercadobrq.www.MercadoBRQ.usecase.gateway.CategoriaGateway;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
-
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Classe responsavel por porver os dados da aplicação.
@@ -93,6 +91,11 @@ public class CategoriaImplementation implements CategoriaGateway {
         return CategoriaMapperResponse.toDomain(categoria);
     }
 
+    /**
+     * Metodo responsavel pela logica de se procurar a categoria pelo seu nome;
+     * @param nome {@code String} - parametro do tipo string
+     * @return CategoriaMapperResponse
+     */
     @Override
     public CategoriaDomainResponse findCategoryWithName(String nome) {
         CategoriaEntity category = categoriaRepository.findByNome(nome);

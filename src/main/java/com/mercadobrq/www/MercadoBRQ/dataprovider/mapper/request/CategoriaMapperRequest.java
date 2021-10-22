@@ -22,7 +22,7 @@ public class CategoriaMapperRequest {
     /**
      * Metodo resposavel por compor de forma logica o processo de atualização das informações da categoria provendo
      * as informações da entidade.
-     * @param category - {@code CategoriaDomainResponse } -
+     * @param category - {@code CategoriaDomainResponse } - fonece as informações da categoria que ja esta no dominio.
      * @return CategoriaEntity
      */
     public static CategoriaEntity toEntityUpdate(CategoriaDomainResponse category) {
@@ -33,11 +33,12 @@ public class CategoriaMapperRequest {
     }
 
     /**
-     * Metodo que retorna os dados a uma entidade.
-     * @param category {@code CategoriaDomainRequest } -
+     * Metodo que que retorna as informações de uma entidade.
+     * @param category {@code CategoriaDomainRequest } - fornece as informações que o usurio manda pra dominio
      * @return CategoriaEntity
      */
     public static CategoriaEntity toEntity(CategoriaDomainRequest category) {
+
         return CategoriaEntity.builder()
                 .nome(category.getNome())
                 .build();
@@ -46,13 +47,14 @@ public class CategoriaMapperRequest {
     /**
      * Metodo responsavel por validar e gerar uma objeto de categoria para produtos.
      * @param category{@code - CategoriaDomainRequest} -
-     * @return 1. se nao existir uma categoria ele retornará um objeto vazio.
+     * @return 1. se categoria for nula ira retornar um construtor vazio.
      *         2. se existir retornará suas informações.
      */
     public static CategoriaEntity toProvideID(CategoriaDomainRequest category) {
         if (Objects.isNull(category)) {
             return CategoriaEntity.builder().build();
         }
+
         return CategoriaEntity.builder()
                 .id(category.getId())
                 .build();
@@ -61,13 +63,14 @@ public class CategoriaMapperRequest {
     /**
      * Metodo responsavel por validar e gerar uma objeto atualizado de categoria para produtos.
      * @param category {@code CategoriaDomainResponse} -
-     * @return 1. se nao existir uma categoria ele retornará um objeto vazio.
+     * @return 1. se categoria for nula ira retornar um construtor vazio.
      *         2. se existir retornará suas informações.
      */
     public static CategoriaEntity toProvideIDUpdate(CategoriaDomainResponse category) {
         if (Objects.isNull(category)) {
             return CategoriaEntity.builder().build();
         }
+
         return CategoriaEntity.builder()
                 .id(category.getId())
                 .build();

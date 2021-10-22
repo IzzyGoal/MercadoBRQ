@@ -40,7 +40,7 @@ public class ProdutoDataProviderMapperResponse {
     /**
      * Metodo repsonsavel por gerar uma lista de respostas para o dominio.
      * @param productEntities {@code ProdutoEntity } - Entidade de produto.
-     * @return ProdutoDataProviderMapperResponse
+     * @return uma lista de ProdutoDomainResponse
      */
     public static Page<ProdutoDomainResponse> toCollectionDomain(Page<ProdutoEntity> productEntities) {
 
