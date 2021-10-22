@@ -12,7 +12,7 @@ import java.util.Objects;
 
 public class CategoriaUseCaseUtils {
 
-    private static final String MENSAGEM_ERRO_REMOVER_CATEGORIA_EM_USO = "A categoria com o código %s, não pode ser removida, esta em uso;";
+    private static final String MENSAGEM_CATEGORIA_JA_EXISTE_NOME = "Não foi possivel alterar o atributo da categoria pois ele ja existe";
     private static final String MENSAGEM_ERRO_CATEGORIA_JA_EXISTE = "Não foi possivel criar a categoria, porque ela já existe.";
     private static final String MENSAGEM_CATEGORIA_NAO_ENCONTRADA = "Essa Categoria nao existe.";
 
@@ -34,6 +34,13 @@ public class CategoriaUseCaseUtils {
     public static void checkIfCategoryAlreadyExist(Long idCategoria, CategoriaDomainResponse category) {
         if (Objects.isNull(category.getId())) {
             throw new BadResquestPostException(String.format(MENSAGEM_ERRO_CATEGORIA_JA_EXISTE, idCategoria));
+        }
+    }
+
+    public static void checkifCategoryExistName(CategoriaDomainRequest categorianNew, CategoriaDomainResponse categoryName) {
+        if (StringUtils.isNotBlank(categoryName.getNome())) {
+            throw new EntityAlreadyExistsException(
+                    String.format(MENSAGEM_CATEGORIA_JA_EXISTE_NOME,categorianNew.getNome()));
         }
     }
 }

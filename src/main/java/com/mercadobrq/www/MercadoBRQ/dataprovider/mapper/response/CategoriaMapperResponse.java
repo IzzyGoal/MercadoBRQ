@@ -56,4 +56,3 @@ public class CategoriaMapperResponse {
         return null;
     }
 }
-

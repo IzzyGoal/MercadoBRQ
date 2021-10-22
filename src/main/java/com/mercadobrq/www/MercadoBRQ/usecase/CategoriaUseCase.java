@@ -42,6 +42,8 @@ public class CategoriaUseCase {
 
     public CategoriaDomainResponse atualizarCategoria(Long idCategoria,CategoriaDomainRequest categorianNew) {
         CategoriaDomainResponse categoriaDomainAtual = buscarCategoriaPorID(idCategoria);
+        CategoriaDomainResponse categoryName = findCategoryWithName(categorianNew.getNome());
+        CategoriaUseCaseUtils.checkifCategoryExistName(categorianNew,categoryName);
             categoriaDomainAtual = CategoriaDomainResponse.builder()
                     .id(categoriaDomainAtual.getId())
                     .nome(categorianNew.getNome())
