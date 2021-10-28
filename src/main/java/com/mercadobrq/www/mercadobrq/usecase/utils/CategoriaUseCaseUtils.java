@@ -6,6 +6,7 @@ import com.mercadobrq.www.mercadobrq.usecase.exceptions.BadResquestPostException
 import com.mercadobrq.www.mercadobrq.usecase.exceptions.CategoryNotFoundException;
 import com.mercadobrq.www.mercadobrq.usecase.exceptions.EntityAlreadyExistsException;
 import org.apache.commons.lang3.StringUtils;
+
 import java.util.Objects;
 
 public class CategoriaUseCaseUtils {
@@ -13,6 +14,7 @@ public class CategoriaUseCaseUtils {
     private static final String MENSAGEM_CATEGORIA_JA_EXISTE_NOME = "Não foi possivel alterar o atributo  '%s' da respectiva categoria pois ele ja existe";
     private static final String MENSAGEM_ERRO_CATEGORIA_JA_EXISTE = "Não foi possivel criar a categoria %s, porque ela já existe.";
     private static final String MENSAGEM_CATEGORIA_NAO_ENCONTRADA = "A categoria '%s' nao existe .";
+    private static final String MENSAGEM_CATEGORIA_PRODUTO_NAO_EXISTE = "A CATEGORIA onde esta sendo cadastrado esse produto nao existe";
 
     private CategoriaUseCaseUtils() {
     }
@@ -42,9 +44,9 @@ public class CategoriaUseCaseUtils {
         }
     }
 
-    public static void checkIfCategoryAlreadyExistForProduct(Long id, CategoriaDomainResponse categoriaDomainResponse) {
+    public static void checkIfCategoryExistForProduct(Long id, CategoriaDomainResponse categoriaDomainResponse) {
         if (Objects.isNull(categoriaDomainResponse.getId())){
-            throw new BadResquestPostException(String.format(MENSAGEM_CATEGORIA_NAO_ENCONTRADA, id));
+            throw new BadResquestPostException(String.format(MENSAGEM_CATEGORIA_PRODUTO_NAO_EXISTE, id));
         }
     }
 }

@@ -1,9 +1,6 @@
 package com.mercadobrq.www.mercadobrq.entrypoint.controller.exceptions;
 
-import com.mercadobrq.www.mercadobrq.usecase.exceptions.EntityAlreadyExistsException;
-import com.mercadobrq.www.mercadobrq.usecase.exceptions.EntityInUseException;
-import com.mercadobrq.www.mercadobrq.usecase.exceptions.EntityNotFound;
-import com.mercadobrq.www.mercadobrq.usecase.exceptions.ProductBlankException;
+import com.mercadobrq.www.mercadobrq.usecase.exceptions.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
@@ -53,6 +50,15 @@ public class HandlerExceptions extends ResponseEntityExceptionHandler {
     @ExceptionHandler(ProductBlankException.class)
     private final ResponseEntity<?> handlerProductIsBlankOrNullException(Exception ex) {
         HttpStatus httpStatus = HttpStatus.NO_CONTENT;
+
+        MensagemExceptionModelResponse mensagemExceptionModelResponse = exceptionAnswer(httpStatus,ex);
+
+        return ResponseEntity.status(httpStatus).body(mensagemExceptionModelResponse);
+    }
+
+    @ExceptionHandler(BadResquestPostException.class)
+    private final ResponseEntity<?> handleCategoryNotExist(Exception ex) {
+        HttpStatus httpStatus = HttpStatus.NOT_FOUND;
 
         MensagemExceptionModelResponse mensagemExceptionModelResponse = exceptionAnswer(httpStatus,ex);
 

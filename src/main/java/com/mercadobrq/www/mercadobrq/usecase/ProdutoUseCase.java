@@ -40,7 +40,7 @@ public class ProdutoUseCase {
         Long idCategoria = product.getCategoria().getId();
 
         CategoriaDomainResponse category = categoriaGateway.findCategoryWithId(idCategoria);
-        CategoriaUseCaseUtils.checkIfCategoryAlreadyExist(idCategoria,category);
+        CategoriaUseCaseUtils.checkIfCategoryExistForProduct(idCategoria,category);
 
         return produtoGateway.addProduct(product);
     }
