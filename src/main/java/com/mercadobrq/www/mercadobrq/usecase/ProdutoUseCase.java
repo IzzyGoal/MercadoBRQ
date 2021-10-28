@@ -38,6 +38,7 @@ public class ProdutoUseCase {
 
     public ProdutoDomainResponse addProduct(ProdutoDomainRequest product) {
         Long idCategoria = product.getCategoria().getId();
+        ProdutoUseCaseUtils.CheckIfQuantityIsNotZero(product.getQuantidade());
 
         CategoriaDomainResponse category = categoriaGateway.findCategoryWithId(idCategoria);
         CategoriaUseCaseUtils.checkIfCategoryExistForProduct(idCategoria,category);
