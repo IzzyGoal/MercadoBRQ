@@ -3,6 +3,7 @@ package com.mercadobrq.www.mercadobrq.entrypoint.controller.exceptions;
 import com.mercadobrq.www.mercadobrq.usecase.exceptions.EntityAlreadyExistsException;
 import com.mercadobrq.www.mercadobrq.usecase.exceptions.EntityInUseException;
 import com.mercadobrq.www.mercadobrq.usecase.exceptions.EntityNotFound;
+import com.mercadobrq.www.mercadobrq.usecase.exceptions.ProductBlankException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
@@ -49,6 +50,14 @@ public class HandlerExceptions extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(httpStatus).body(mensagemExceptionModelResponse);
     }
 
+    @ExceptionHandler(ProductBlankException.class)
+    private final ResponseEntity<?> handlerProductIsBlankOrNullException(Exception ex) {
+        HttpStatus httpStatus = HttpStatus.NO_CONTENT;
+
+        MensagemExceptionModelResponse mensagemExceptionModelResponse = exceptionAnswer(httpStatus,ex);
+
+        return ResponseEntity.status(httpStatus).body(mensagemExceptionModelResponse);
+    }
     /**
      * metodo responsavel por gerar um modelo de resposta as exceções.
      * @param httpStatus {@code HttpStatus} - Classe mae com todas os codigos de exceções

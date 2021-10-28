@@ -8,6 +8,7 @@ import com.mercadobrq.www.mercadobrq.usecase.domain.response.ProdutoDomainRespon
 import com.mercadobrq.www.mercadobrq.usecase.gateway.CategoriaGateway;
 import com.mercadobrq.www.mercadobrq.usecase.gateway.ProdutoGateway;
 import com.mercadobrq.www.mercadobrq.usecase.utils.CategoriaUseCaseUtils;
+import com.mercadobrq.www.mercadobrq.usecase.utils.ProdutoUseCaseUtils;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
@@ -16,6 +17,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 import java.lang.reflect.Field;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
 
 import static com.mercadobrq.www.mercadobrq.usecase.utils.ProdutoUseCaseUtils.CheckIfProductExist;
 

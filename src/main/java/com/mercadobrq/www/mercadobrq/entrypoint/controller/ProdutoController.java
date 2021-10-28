@@ -9,6 +9,7 @@ import com.mercadobrq.www.mercadobrq.usecase.ProdutoUseCase;
 import com.mercadobrq.www.mercadobrq.usecase.domain.request.ProdutoDomainRequest;
 import com.mercadobrq.www.mercadobrq.entrypoint.model.request.ProdutoParameterModelResquest;
 import com.mercadobrq.www.mercadobrq.usecase.domain.response.ProdutoDomainResponse;
+import com.mercadobrq.www.mercadobrq.usecase.utils.ProdutoUseCaseUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -58,9 +59,8 @@ public class ProdutoController {
                 ProdutoEntrypointMapperResponse.toCollectionModelShort(produtoDomain);
 
         if (productResponseShorts.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-
+                return ProdutoUseCaseUtils.ProductIsBlankorNullException();
+            }
         return ResponseEntity.ok(productResponseShorts);
     }
 
