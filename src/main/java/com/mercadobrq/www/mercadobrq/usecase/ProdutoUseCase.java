@@ -5,6 +5,7 @@ import com.mercadobrq.www.mercadobrq.usecase.domain.request.ProdutoDomainRequest
 import com.mercadobrq.www.mercadobrq.entrypoint.model.request.ProdutoParameterModelResquest;
 import com.mercadobrq.www.mercadobrq.usecase.domain.response.CategoriaDomainResponse;
 import com.mercadobrq.www.mercadobrq.usecase.domain.response.ProdutoDomainResponse;
+import com.mercadobrq.www.mercadobrq.usecase.exceptions.ProductNotExistException;
 import com.mercadobrq.www.mercadobrq.usecase.gateway.CategoriaGateway;
 import com.mercadobrq.www.mercadobrq.usecase.gateway.ProdutoGateway;
 import com.mercadobrq.www.mercadobrq.usecase.utils.CategoriaUseCaseUtils;
@@ -18,9 +19,9 @@ import org.springframework.util.ReflectionUtils;
 import java.lang.reflect.Field;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Optional;
 
 import static com.mercadobrq.www.mercadobrq.usecase.utils.ProdutoUseCaseUtils.CheckIfProductExist;
+import static com.mercadobrq.www.mercadobrq.usecase.utils.ProdutoUseCaseUtils.ProductIsBlankorNullException;
 
 /**
  * Classe responsavel por intermediar a operação logica da aplicação e a comunicação com o banco de dados
@@ -33,15 +34,16 @@ import static com.mercadobrq.www.mercadobrq.usecase.utils.ProdutoUseCaseUtils.Ch
 @Service
 public class ProdutoUseCase {
 
+    private static final String MENSAGEM_PRODUTO_NAO_EXISTE ="O produto do ID respectivo nao foi encontrado";
     private final ProdutoGateway produtoGateway;
     private final CategoriaGateway categoriaGateway;
 
     public ProdutoDomainResponse addProduct(ProdutoDomainRequest product) {
         Long idCategoria = product.getCategoria().getId();
-        ProdutoUseCaseUtils.CheckIfQuantityIsNotZero(product.getQuantidade());
+        ProdutoUseCaseUtils.checkIfQuantityIsNotZero(product);
 
         CategoriaDomainResponse category = categoriaGateway.findCategoryWithId(idCategoria);
-        CategoriaUseCaseUtils.checkIfCategoryExistForProduct(idCategoria,category);
+        CategoriaUseCaseUtils.checkIfCategoryExistForProduct(idCategoria, category);
 
         return produtoGateway.addProduct(product);
     }
@@ -54,15 +56,27 @@ public class ProdutoUseCase {
         return product;
     }
 
-    public void deleteProduct( Long idProduct){
+    public void deleteProduct(Long idProduct) {
+        findProductIdWithForDelete(idProduct);
 
         produtoGateway.deleteProduct(idProduct);
+    }
+
+    private void findProductIdWithForDelete(Long idProduct) {
+        if (Objects.nonNull(idProduct)) {
+            ProdutoDomainResponse product  = produtoGateway.findWithID(idProduct);
+            if (Objects.nonNull(product)) {
+            }
+            throw new ProductNotExistException(String.format(MENSAGEM_PRODUTO_NAO_EXISTE, idProduct));
+        }
     }
 
     public ProdutoDomainResponse partiallyUpdate(Long idProduct, Map<String, Object> newData) {
 
         ProdutoDomainResponse product = produtoGateway.findWithID(idProduct);
-        merge(newData,product);
+        ProdutoUseCaseUtils.CheckIfProductExist(product, idProduct);
+
+        merge(newData, product);
 
         return produtoGateway.partiallyUpdate(product);
     }
@@ -72,7 +86,7 @@ public class ProdutoUseCase {
             return produtoGateway.searchProductforCategory(pageable, product.getNomeCategoria());
         }
         if (StringUtils.isNotBlank(product.getMarca())) {
-            return  produtoGateway.searchProductforBrand(pageable, product.getMarca());
+            return produtoGateway.searchProductforBrand(pageable, product.getMarca());
         }
         return produtoGateway.searchAllProduct(pageable);
     }
@@ -81,12 +95,30 @@ public class ProdutoUseCase {
         var objectMapper = new ObjectMapper();
 
         ProdutoDomainResponse productOrigin = objectMapper.convertValue(newDataProduct, ProdutoDomainResponse.class);
+
+        checkIfIdCategoryExist(productOrigin);
+        ProdutoUseCaseUtils.checkActiveForQuantity(productOrigin,product);
+        ProdutoUseCaseUtils.checIfActiveForOff(productOrigin,product);
+        ProdutoUseCaseUtils.checkIfOffAndPercentageIsNull(productOrigin,product);
+
         newDataProduct.forEach((name, value) -> {
             Field field = ReflectionUtils.findField(ProdutoDomainResponse.class, name);
             field.setAccessible(true);
             Object newValue = ReflectionUtils.getField(field, productOrigin);
-
             ReflectionUtils.setField(field, product, newValue);
         });
     }
+
+    private void checkIfIdCategoryExist(ProdutoDomainResponse productOrigin) {
+        if (Objects.nonNull(productOrigin.getCategoria())) {
+            if (Objects.nonNull(productOrigin.getCategoria().getId())) {
+                CategoriaDomainResponse categoriaDomainResponse =
+                        categoriaGateway.findCategoryWithId(productOrigin.getCategoria().getId());
+
+
+                CategoriaUseCaseUtils.checkIfCategoryExistForProduct(productOrigin.getCategoria().getId(), categoriaDomainResponse);
+            }
+        }
+    }
+
 }

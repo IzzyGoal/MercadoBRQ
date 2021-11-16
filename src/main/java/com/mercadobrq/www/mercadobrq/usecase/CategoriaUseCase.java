@@ -52,14 +52,6 @@ public class CategoriaUseCase {
             return categoriaGateway.updateCategory(categoriaDomainAtual);
     }
 
-    public CategoriaDomainResponse buscarCategoriaPorID(Long idCategoria) {
-
-        CategoriaDomainResponse category = categoriaGateway.findCategoryWithId(idCategoria);
-        CategoriaUseCaseUtils.checkifCategoryExist(category,idCategoria);
-
-            return category;
-    }
-
     public void removerCategoriaPorID(Long idCategoria) {
 
         buscarCategoriaPorID(idCategoria);
@@ -68,6 +60,14 @@ public class CategoriaUseCase {
         } catch (DataIntegrityViolationException ex) {
             throw new EntityInUseException(String.format(MENSAGEM_ERRO_AO_REMOVER_CATEGORIA,idCategoria));
         }
+    }
+
+    public CategoriaDomainResponse buscarCategoriaPorID(Long idCategoria) {
+
+        CategoriaDomainResponse category = categoriaGateway.findCategoryWithId(idCategoria);
+        CategoriaUseCaseUtils.checkifCategoryExist(category,idCategoria);
+
+        return category;
     }
 }
 

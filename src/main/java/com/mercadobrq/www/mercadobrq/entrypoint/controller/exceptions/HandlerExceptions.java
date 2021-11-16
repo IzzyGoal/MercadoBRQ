@@ -37,6 +37,15 @@ public class HandlerExceptions extends ResponseEntityExceptionHandler {
 
         return ResponseEntity.status(httpStatus).body(mensagemExceptionModelResponse);
     }
+    
+    @ExceptionHandler(BadBusyException.class)
+    public final ResponseEntity<?> handlerExceptionBadBusy(Exception ex) {
+        HttpStatus httpStatus = HttpStatus.UNPROCESSABLE_ENTITY;
+
+        MensagemExceptionModelResponse mensagemExceptionModelResponse =  exceptionAnswer(httpStatus,ex);
+
+        return ResponseEntity.status(httpStatus).body(mensagemExceptionModelResponse);
+    }
 
     @ExceptionHandler(EntityInUseException.class)
     public final ResponseEntity<?> handlerEntityInUse(Exception ex) {

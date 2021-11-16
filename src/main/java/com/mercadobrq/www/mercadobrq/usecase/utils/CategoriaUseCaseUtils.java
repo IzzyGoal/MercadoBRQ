@@ -2,6 +2,7 @@ package com.mercadobrq.www.mercadobrq.usecase.utils;
 
 import com.mercadobrq.www.mercadobrq.usecase.domain.request.CategoriaDomainRequest;
 import com.mercadobrq.www.mercadobrq.usecase.domain.response.CategoriaDomainResponse;
+import com.mercadobrq.www.mercadobrq.usecase.domain.response.ProdutoDomainResponse;
 import com.mercadobrq.www.mercadobrq.usecase.exceptions.BadResquestPostException;
 import com.mercadobrq.www.mercadobrq.usecase.exceptions.CategoryNotFoundException;
 import com.mercadobrq.www.mercadobrq.usecase.exceptions.EntityAlreadyExistsException;

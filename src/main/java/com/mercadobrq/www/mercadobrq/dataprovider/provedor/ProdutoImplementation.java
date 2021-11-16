@@ -11,8 +11,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
+
 import javax.transaction.Transactional;
-import java.util.Optional;
 
 /**
  * Classe responsavel por porver os dados da aplicação.
@@ -47,9 +47,9 @@ public class ProdutoImplementation implements ProdutoGateway {
      */
     @Override
     public ProdutoDomainResponse findWithID(Long idProduct) {
-        Optional<ProdutoEntity> produtoEntity = produtoRepository.findById(idProduct);
+        ProdutoEntity produtoEntity = produtoRepository.findById(idProduct).orElse(ProdutoEntity.builder().build());
 
-        return ProdutoDataProviderMapperResponse.toDomain(produtoEntity.get());
+        return ProdutoDataProviderMapperResponse.toDomain(produtoEntity);
     }
 
     /**
