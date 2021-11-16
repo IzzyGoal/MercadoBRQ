@@ -1,8 +1,8 @@
 package com.mercadobrq.www.mercadobrq.usecase;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mercadobrq.www.mercadobrq.usecase.domain.request.ProdutoDomainRequest;
 import com.mercadobrq.www.mercadobrq.entrypoint.model.request.ProdutoParameterModelResquest;
+import com.mercadobrq.www.mercadobrq.usecase.domain.request.ProdutoDomainRequest;
 import com.mercadobrq.www.mercadobrq.usecase.domain.response.CategoriaDomainResponse;
 import com.mercadobrq.www.mercadobrq.usecase.domain.response.ProdutoDomainResponse;
 import com.mercadobrq.www.mercadobrq.usecase.exceptions.ProductNotExistException;
@@ -16,12 +16,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
+
 import java.lang.reflect.Field;
 import java.util.Map;
 import java.util.Objects;
 
 import static com.mercadobrq.www.mercadobrq.usecase.utils.ProdutoUseCaseUtils.CheckIfProductExist;
-import static com.mercadobrq.www.mercadobrq.usecase.utils.ProdutoUseCaseUtils.ProductIsBlankorNullException;
 
 /**
  * Classe responsavel por intermediar a operação logica da aplicação e a comunicação com o banco de dados
@@ -120,5 +120,4 @@ public class ProdutoUseCase {
             }
         }
     }
-
 }
