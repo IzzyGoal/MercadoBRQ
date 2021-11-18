@@ -16,6 +16,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 import java.util.Map;
 
 /**
@@ -37,7 +39,7 @@ public class ProdutoController {
      * @return ResponseEntity(produtoModelResponse)
      */
     @PostMapping
-    public ResponseEntity<ProdutoModelResponse> addProduct(@RequestBody ProdutoModelRequest product) {
+    public ResponseEntity<ProdutoModelResponse> addProduct(@RequestBody @Valid ProdutoModelRequest product) {
         ProdutoDomainRequest produtoDomainRequest = ProdutoEntrypointMapperRequest.toDomainAdd(product);
         ProdutoDomainResponse produtoDomainResponse = produtoUseCase.addProduct(produtoDomainRequest);
         ProdutoModelResponse produtoModelResponse = ProdutoEntrypointMapperResponse.toModel(produtoDomainResponse);
@@ -80,7 +82,7 @@ public class ProdutoController {
 
     @PatchMapping("/{id}")
     public ResponseEntity<ProdutoModelResponse> partiallyUpdate(@PathVariable("id") Long idProduct,
-                                                                @RequestBody Map<String, Object> campos) {
+                                                                @RequestBody @Valid Map<String, Object> campos) {
         ProdutoDomainResponse product = produtoUseCase.partiallyUpdate(idProduct,campos);
         ProdutoModelResponse produtoModelResponse = ProdutoEntrypointMapperResponse.toModel(product);
 

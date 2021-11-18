@@ -25,9 +25,9 @@ public class ProdutoUseCaseUtils {
      * @param idProduct {@code Long} - ID do produto.
      */
     public static void CheckIfProductExist(ProdutoDomainResponse product, Long idProduct) {
-        if (Objects.nonNull((product.getId()))) {
+        if (Objects.isNull((product.getId()))) {
+            throw new ProductNotExistException(String.format(MENSAGEM_PRODUTO_NAO_EXISTE, idProduct));
         }
-        throw new ProductNotExistException(String.format(MENSAGEM_PRODUTO_NAO_EXISTE, idProduct));
     }
 
     /**

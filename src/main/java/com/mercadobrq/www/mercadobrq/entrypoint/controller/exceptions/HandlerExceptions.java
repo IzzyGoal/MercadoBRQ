@@ -3,11 +3,19 @@ package com.mercadobrq.www.mercadobrq.entrypoint.controller.exceptions;
 import com.mercadobrq.www.mercadobrq.usecase.exceptions.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Classe responsavel por tratar e personalizar exceções.
@@ -27,6 +35,15 @@ public class HandlerExceptions extends ResponseEntityExceptionHandler {
         MensagemExceptionModelResponse menssage = exceptionAnswer(httpStatus,ex);
 
         return ResponseEntity.status(httpStatus).body(menssage);
+    }
+
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        BindingResult bindingResult = ex.getBindingResult();
+        status = HttpStatus.BAD_REQUEST;
+        MensagemExceptionModelResponse message = exceptionAnswerField(status,ex,bindingResult);
+
+        return handleExceptionInternal(ex, message, headers, status, request);
     }
 
     @ExceptionHandler(EntityAlreadyExistsException.class)
@@ -83,6 +100,22 @@ public class HandlerExceptions extends ResponseEntityExceptionHandler {
         return MensagemExceptionModelResponse.builder()
                 .code(String.valueOf(httpStatus.value()))
                 .menssage(ex.getMessage())
+                .build();
+    }
+
+    private MensagemExceptionModelResponse exceptionAnswerField(HttpStatus httpStatus, MethodArgumentNotValidException ex, BindingResult bindingResult) {
+
+        List<FieldsAnswers> fieldsAnswersList = bindingResult.getFieldErrors().stream()
+                .map(fieldError -> FieldsAnswers.builder()
+                        .name(fieldError.getField())
+                        .messageUser(fieldError.getDefaultMessage())
+                        .build())
+                .collect(Collectors.toList());
+
+        return MensagemExceptionModelResponse.builder()
+                .code(String.valueOf(httpStatus))
+                .menssage("A informação fornecida nao pode ser aceita pois fere o padrão ,por favor ,tente novamente.")
+                .fieldsList(fieldsAnswersList)
                 .build();
     }
 }

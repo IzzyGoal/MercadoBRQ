@@ -65,9 +65,9 @@ public class ProdutoUseCase {
     private void findProductIdWithForDelete(Long idProduct) {
         if (Objects.nonNull(idProduct)) {
             ProdutoDomainResponse product  = produtoGateway.findWithID(idProduct);
-            if (Objects.nonNull(product)) {
+            if (Objects.isNull(product)) {
+                throw new ProductNotExistException(String.format(MENSAGEM_PRODUTO_NAO_EXISTE, idProduct));
             }
-            throw new ProductNotExistException(String.format(MENSAGEM_PRODUTO_NAO_EXISTE, idProduct));
         }
     }
 

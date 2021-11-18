@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 /**
  * Classe responsavel pór conter o modelo de resposta da entidade categoria.
  *
@@ -17,6 +20,9 @@ import lombok.Setter;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CategoriaModelResponse {
 
+    @NotNull
     private Long id;
+
+    @NotBlank
     private String nome;
 }

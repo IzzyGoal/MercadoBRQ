@@ -2,7 +2,6 @@ package com.mercadobrq.www.mercadobrq.usecase.utils;
 
 import com.mercadobrq.www.mercadobrq.usecase.domain.request.CategoriaDomainRequest;
 import com.mercadobrq.www.mercadobrq.usecase.domain.response.CategoriaDomainResponse;
-import com.mercadobrq.www.mercadobrq.usecase.domain.response.ProdutoDomainResponse;
 import com.mercadobrq.www.mercadobrq.usecase.exceptions.BadResquestPostException;
 import com.mercadobrq.www.mercadobrq.usecase.exceptions.CategoryNotFoundException;
 import com.mercadobrq.www.mercadobrq.usecase.exceptions.EntityAlreadyExistsException;
@@ -16,6 +15,7 @@ public class CategoriaUseCaseUtils {
     private static final String MENSAGEM_ERRO_CATEGORIA_JA_EXISTE = "Não foi possivel criar a categoria %s, porque ela já existe.";
     private static final String MENSAGEM_CATEGORIA_NAO_ENCONTRADA = "A categoria '%s' nao existe .";
     private static final String MENSAGEM_CATEGORIA_PRODUTO_NAO_EXISTE = "A CATEGORIA onde esta sendo cadastrado esse produto nao existe";
+    private static final String MENSAGEM_CATEGORIA_ATRIBUTOS_NAO_PODEM_SER_NULOS_VAZIOS = "O nome da categoria nao pode ser nulo";
 
     private CategoriaUseCaseUtils() {
     }

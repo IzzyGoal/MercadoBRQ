@@ -11,6 +11,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -32,7 +34,7 @@ public class CategoriaController {
      * @return ResponseEntity - devolve Http 200 após a criação
      */
     @PostMapping
-    public ResponseEntity<CategoriaModelResponse> add(@RequestBody  CategoriaModelRequest categoriaModelRequest) {
+    public ResponseEntity<CategoriaModelResponse> add(@RequestBody  @Valid CategoriaModelRequest categoriaModelRequest) {
        CategoriaDomainRequest categoriaDomainRequest = CategoriaEntrypointMapperRequest.toDomain(categoriaModelRequest);
        CategoriaDomainResponse categoriaDomainResponse = categoriaUseCase.cadastrarCategoria(categoriaDomainRequest);
        CategoriaModelResponse categoriaModelResponse = CategoriaEntryopintMapperResponse.toModel(categoriaDomainResponse);
@@ -76,7 +78,7 @@ public class CategoriaController {
      */
     @PutMapping("/{id}")
     public ResponseEntity<CategoriaModelResponse> update(@PathVariable("id") Long idCategoria,
-                                                         @RequestBody CategoriaModelRequest categoriaModelRequest) {
+                                                         @RequestBody @Valid CategoriaModelRequest categoriaModelRequest) {
         CategoriaDomainRequest categoriaDomainnew = CategoriaEntrypointMapperRequest.toDomain(categoriaModelRequest);
         CategoriaDomainResponse categoriaDomainResponse = categoriaUseCase.atualizarCategoria(idCategoria,categoriaDomainnew);
         CategoriaModelResponse categoriaModelResponse = CategoriaEntryopintMapperResponse.toModel(categoriaDomainResponse);
