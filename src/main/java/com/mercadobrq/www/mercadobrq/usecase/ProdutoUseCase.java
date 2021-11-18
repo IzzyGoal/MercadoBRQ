@@ -48,23 +48,24 @@ public class ProdutoUseCase {
         return produtoGateway.addProduct(product);
     }
 
-    public ProdutoDomainResponse findProductWithId(Long idProduct) {
+    public ProdutoDomainResponse findProductWithId(Long idProduct, String expand) {
 
-        ProdutoDomainResponse product = produtoGateway.findWithID(idProduct);
+        ProdutoDomainResponse product = produtoGateway.findWithID(idProduct,expand);
         CheckIfProductExist(product, idProduct);
 
         return product;
     }
 
     public void deleteProduct(Long idProduct) {
-        findProductIdWithForDelete(idProduct);
+        String expand = null;
+        findProductIdWithForDelete(idProduct,expand);
 
         produtoGateway.deleteProduct(idProduct);
     }
 
-    private void findProductIdWithForDelete(Long idProduct) {
+    private void findProductIdWithForDelete(Long idProduct,String expand) {
         if (Objects.nonNull(idProduct)) {
-            ProdutoDomainResponse product  = produtoGateway.findWithID(idProduct);
+            ProdutoDomainResponse product  = produtoGateway.findWithID(idProduct,expand);
             if (Objects.isNull(product)) {
                 throw new ProductNotExistException(String.format(MENSAGEM_PRODUTO_NAO_EXISTE, idProduct));
             }
@@ -72,8 +73,8 @@ public class ProdutoUseCase {
     }
 
     public ProdutoDomainResponse partiallyUpdate(Long idProduct, Map<String, Object> newData) {
-
-        ProdutoDomainResponse product = produtoGateway.findWithID(idProduct);
+        String expand = null;
+        ProdutoDomainResponse product = produtoGateway.findWithID(idProduct,expand);
         ProdutoUseCaseUtils.CheckIfProductExist(product, idProduct);
 
         merge(newData, product);

@@ -46,7 +46,7 @@ public class ProdutoImplementation implements ProdutoGateway {
      * @return ProdutoDataProviderMapperResponse - Objeto Consultado.
      */
     @Override
-    public ProdutoDomainResponse findWithID(Long idProduct) {
+    public ProdutoDomainResponse findWithID(Long idProduct, String expand) {
         ProdutoEntity produtoEntity = produtoRepository.findById(idProduct).orElse(ProdutoEntity.builder().build());
 
         return ProdutoDataProviderMapperResponse.toDomain(produtoEntity);

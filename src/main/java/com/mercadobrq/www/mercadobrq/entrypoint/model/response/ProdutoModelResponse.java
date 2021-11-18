@@ -32,4 +32,5 @@ public class ProdutoModelResponse {
     private Boolean ofertado;
     private Integer porcentagem;
     private CategoriaModelResponse categoria;
+    private TabelaNutricionalEntrypointModelResponse tabela;
 }

@@ -72,9 +72,10 @@ public class ProdutoController {
      * @return ResponseEntity(ProdutoModelResponse).
      */
     @GetMapping("/{id}")
-    public ResponseEntity<ProdutoModelResponse> findWithId(@PathVariable("id") Long idProduct) {
+    public ResponseEntity<ProdutoModelResponse> findWithId(@PathVariable("id") Long idProduct,
+                                                           @RequestParam(required = false) String expand) {
 
-        ProdutoDomainResponse produtoDomainResponse = produtoUseCase.findProductWithId(idProduct);
+        ProdutoDomainResponse produtoDomainResponse = produtoUseCase.findProductWithId(idProduct,expand);
         ProdutoModelResponse productModel = ProdutoEntrypointMapperResponse.toModel(produtoDomainResponse);
 
         return ResponseEntity.ok(productModel);

@@ -52,4 +52,7 @@ public class ProdutoModelRequest {
     @NotNull
     @Valid
     private CategoriaIDModelRequest categoria;
+
+    @Valid
+    private TabelaNutricionalEntrypointModelResquest tabela;
 }

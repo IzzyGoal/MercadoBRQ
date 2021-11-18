@@ -15,7 +15,7 @@ public interface ProdutoGateway {
 
     ProdutoDomainResponse addProduct(ProdutoDomainRequest produtoDomainRequest);
 
-    ProdutoDomainResponse findWithID(Long idProduct);
+    ProdutoDomainResponse findWithID(Long idProduct, String expand);
 
     ProdutoDomainResponse partiallyUpdate(ProdutoDomainResponse productChanged);
 
