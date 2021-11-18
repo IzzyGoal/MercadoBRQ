@@ -58,5 +58,6 @@ public class ProdutoModelRequest {
     private CategoriaIDModelRequest categoria;
 
 
+    @Valid
     private TabelaNutricionalEntrypointModelResquest tabelaNutricional;
 }
