@@ -33,6 +33,7 @@ public class ProdutoEntrypointMapperResponse {
                 .ofertado(product.getOfertado())
                 .porcentagem(product.getPorcentagem())
                 .categoria(categoriaResponse(product))
+                .tabela(TabelaNutricionalEntrypointMapperResponse.toModel(product.getTabelaNutricional()))
                 .build();
     }
 

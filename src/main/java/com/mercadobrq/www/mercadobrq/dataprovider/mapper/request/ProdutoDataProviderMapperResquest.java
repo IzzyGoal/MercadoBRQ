@@ -34,6 +34,7 @@ public class ProdutoDataProviderMapperResquest {
                 .ofertado(false)
                 .porcetagem(0)
                 .categoria(CategoriaMapperRequest.toProvideID((product.getCategoria())))
+                .tabelaNutricional(TabelaNutricionalDataProviderMapperRequest.toEntity(product.getTabelaNutricional()))
                 .build();
     }
 
@@ -54,6 +55,7 @@ public class ProdutoDataProviderMapperResquest {
                 .ofertado(product.getOfertado())
                 .porcetagem(product.getPorcentagem())
                 .categoria(CategoriaMapperRequest.toProvideIDUpdate(product.getCategoria()))
+                .tabelaNutricional(TabelaNutricionalDataProviderMapperRequest.toEntityUpdate(product.getTabelaNutricional()))
                 .build();
     }
 }

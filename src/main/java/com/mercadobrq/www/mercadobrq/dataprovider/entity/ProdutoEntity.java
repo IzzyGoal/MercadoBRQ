@@ -51,4 +51,7 @@ public class ProdutoEntity {
     @ManyToOne(targetEntity = CategoriaEntity.class)
     @JoinColumn(nullable = false)
     private CategoriaEntity categoria;
+
+    @Embedded
+    private TabelaNutricionalEntity tabelaNutricional;
 }

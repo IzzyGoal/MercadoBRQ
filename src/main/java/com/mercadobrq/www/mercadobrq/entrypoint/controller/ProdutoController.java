@@ -39,7 +39,7 @@ public class ProdutoController {
      * @return ResponseEntity(produtoModelResponse)
      */
     @PostMapping
-    public ResponseEntity<ProdutoModelResponse> addProduct(@RequestBody @Valid ProdutoModelRequest product) {
+    public ResponseEntity<ProdutoModelResponse> addProduct(@RequestBody ProdutoModelRequest product) {
         ProdutoDomainRequest produtoDomainRequest = ProdutoEntrypointMapperRequest.toDomainAdd(product);
         ProdutoDomainResponse produtoDomainResponse = produtoUseCase.addProduct(produtoDomainRequest);
         ProdutoModelResponse produtoModelResponse = ProdutoEntrypointMapperResponse.toModel(produtoDomainResponse);

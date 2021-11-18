@@ -1,10 +1,12 @@
 package com.mercadobrq.www.mercadobrq.entrypoint.model.request;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.Valid;
-import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
@@ -18,6 +20,8 @@ import java.math.BigDecimal;
  */
 @Getter
 @Setter
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ProdutoModelRequest {
 
     @NotNull
@@ -53,6 +57,6 @@ public class ProdutoModelRequest {
     @Valid
     private CategoriaIDModelRequest categoria;
 
-    @Valid
-    private TabelaNutricionalEntrypointModelResquest tabela;
+
+    private TabelaNutricionalEntrypointModelResquest tabelaNutricional;
 }

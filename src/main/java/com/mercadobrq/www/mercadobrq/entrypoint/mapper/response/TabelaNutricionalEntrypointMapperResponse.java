@@ -1,26 +1,18 @@
-package com.mercadobrq.www.mercadobrq.dataprovider.mapper.request;
+package com.mercadobrq.www.mercadobrq.entrypoint.mapper.response;
 
 import com.mercadobrq.www.mercadobrq.dataprovider.entity.TabelaNutricionalEntity;
-import com.mercadobrq.www.mercadobrq.entrypoint.model.request.TabelaNutricionalEntrypointModelResquest;
-import com.mercadobrq.www.mercadobrq.usecase.domain.request.TabelaNutricionalDomainRequest;
+import com.mercadobrq.www.mercadobrq.entrypoint.model.response.TabelaNutricionalEntrypointModelResponse;
 import com.mercadobrq.www.mercadobrq.usecase.domain.response.TabelaNutricionalDomainResponse;
 
-/**
- * Classe responsavel por buildar as informações da tabela nutricional fornecida pelo usuario.
- *
- * @author Gabriel Silva Lima
- */
-public class TabelaNutricionalDataProviderMapperRequest {
-
+public class TabelaNutricionalEntrypointMapperResponse {
     /**
-     * Construtor vazio para evitar instanciação
+     * Construtor privado para evitar instanciação.
      */
-    private TabelaNutricionalDataProviderMapperRequest() {
+    private TabelaNutricionalEntrypointMapperResponse() {
     }
 
-    public  static TabelaNutricionalDomainRequest toDomain(TabelaNutricionalEntrypointModelResquest tabela) {
-
-         return TabelaNutricionalDomainRequest.builder()
+    public static TabelaNutricionalEntrypointModelResponse toModel(TabelaNutricionalDomainResponse tabela) {
+        return TabelaNutricionalEntrypointModelResponse.builder()
                 .valorEnergetico(tabela.getValorEnergetico())
                 .gorduraSaturada(tabela.getGorduraSaturada())
                 .sodio(tabela.getSodio())
@@ -30,8 +22,8 @@ public class TabelaNutricionalDataProviderMapperRequest {
                 .build();
     }
 
-    public static TabelaNutricionalEntity toEntity(TabelaNutricionalDomainRequest tabelaNutricional) {
-        return TabelaNutricionalEntity.builder()
+    public static TabelaNutricionalDomainResponse toDomainWithExpand(TabelaNutricionalEntity tabelaNutricional, String expand) {
+        return TabelaNutricionalDomainResponse.builder()
                 .valorEnergetico(tabelaNutricional.getValorEnergetico())
                 .gorduraSaturada(tabelaNutricional.getGorduraSaturada())
                 .sodio(tabelaNutricional.getSodio())
@@ -41,8 +33,8 @@ public class TabelaNutricionalDataProviderMapperRequest {
                 .build();
     }
 
-    public static TabelaNutricionalEntity toEntityUpdate(TabelaNutricionalDomainResponse tabelaNutricional) {
-        return TabelaNutricionalEntity.builder()
+    public static TabelaNutricionalDomainResponse toDomain(TabelaNutricionalEntity tabelaNutricional) {
+        return TabelaNutricionalDomainResponse.builder()
                 .valorEnergetico(tabelaNutricional.getValorEnergetico())
                 .gorduraSaturada(tabelaNutricional.getGorduraSaturada())
                 .sodio(tabelaNutricional.getSodio())

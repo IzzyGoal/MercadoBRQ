@@ -1,8 +1,6 @@
 package com.mercadobrq.www.mercadobrq.entrypoint.mapper.request;
 
-import com.mercadobrq.www.mercadobrq.dataprovider.mapper.request.TabelaNutricionalDataProviderMapperRequest;
 import com.mercadobrq.www.mercadobrq.entrypoint.model.request.ProdutoModelRequest;
-import com.mercadobrq.www.mercadobrq.entrypoint.model.request.TabelaNutricionalEntrypointModelResquest;
 import com.mercadobrq.www.mercadobrq.usecase.domain.request.ProdutoDomainRequest;
 
 /**
@@ -34,7 +32,7 @@ public class ProdutoEntrypointMapperRequest {
                 .ofertado(productModel.getOfertado())
                 .porcentagem(productModel.getPorcentagem())
                 .categoria(CategoriaEntrypointMapperRequest.toDomainProduct(productModel.getCategoria()))
-                .tabela(TabelaNutricionalDataProviderMapperRequest.toDomain(productModel.getTabela()))
+                .tabelaNutricional(TabelaNutricionalEntrypointMapperRequest.toDomain(productModel.getTabelaNutricional()))
                 .build();
     }
 }

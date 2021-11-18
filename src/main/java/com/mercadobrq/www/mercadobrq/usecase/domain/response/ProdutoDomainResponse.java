@@ -1,5 +1,8 @@
 package com.mercadobrq.www.mercadobrq.usecase.domain.response;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.*;
 import java.math.BigDecimal;
 
@@ -14,6 +17,8 @@ import java.math.BigDecimal;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ProdutoDomainResponse {
 
     private Long id;
@@ -26,4 +31,5 @@ public class ProdutoDomainResponse {
     private Boolean ofertado;
     private Integer porcentagem;
     private CategoriaDomainResponse categoria;
+    private TabelaNutricionalDomainResponse tabelaNutricional;
 }

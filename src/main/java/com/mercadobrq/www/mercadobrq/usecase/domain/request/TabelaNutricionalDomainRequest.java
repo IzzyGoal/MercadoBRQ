@@ -8,8 +8,6 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class TabelaNutricionalDomainRequest {

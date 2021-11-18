@@ -1,6 +1,7 @@
 package com.mercadobrq.www.mercadobrq.dataprovider.mapper.response;
 
 import com.mercadobrq.www.mercadobrq.dataprovider.entity.ProdutoEntity;
+import com.mercadobrq.www.mercadobrq.entrypoint.mapper.response.TabelaNutricionalEntrypointMapperResponse;
 import com.mercadobrq.www.mercadobrq.usecase.domain.response.ProdutoDomainResponse;
 import org.springframework.data.domain.Page;
 
@@ -34,6 +35,7 @@ public class ProdutoDataProviderMapperResponse {
                 .ofertado(product.getOfertado())
                 .porcentagem(product.getPorcetagem())
                 .categoria(CategoriaMapperResponse.toDomain(product.getCategoria()))
+                .tabelaNutricional(TabelaNutricionalEntrypointMapperResponse.toDomain(product.getTabelaNutricional()))
                 .build();
     }
 
@@ -45,5 +47,22 @@ public class ProdutoDataProviderMapperResponse {
     public static Page<ProdutoDomainResponse> toCollectionDomain(Page<ProdutoEntity> productEntities) {
 
         return productEntities.map(ProdutoDataProviderMapperResponse::toDomain);
+    }
+
+    public static ProdutoDomainResponse toDomainWithExpand(ProdutoEntity produtoEntity, String expand) {
+        return ProdutoDomainResponse.builder()
+                .id(produtoEntity.getId())
+                .nome(produtoEntity.getNome())
+                .descricao(produtoEntity.getDescricao())
+                .marca(produtoEntity.getMarca())
+                .quantidade(produtoEntity.getQuantidade())
+                .preco(produtoEntity.getPreco())
+                .ativo(produtoEntity.getAtivo())
+                .ofertado(produtoEntity.getOfertado())
+                .porcentagem(produtoEntity.getPorcetagem())
+                .categoria(CategoriaMapperResponse.toDomain(produtoEntity.getCategoria()))
+                .tabelaNutricional(TabelaNutricionalEntrypointMapperResponse.toDomainWithExpand(produtoEntity
+                        .getTabelaNutricional(), expand))
+                .build();
     }
 }

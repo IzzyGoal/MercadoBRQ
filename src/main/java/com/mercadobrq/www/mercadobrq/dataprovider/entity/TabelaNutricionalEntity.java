@@ -1,8 +1,6 @@
 package com.mercadobrq.www.mercadobrq.dataprovider.entity;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -11,6 +9,8 @@ import javax.persistence.Embeddable;
 @Setter
 @Embeddable
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class TabelaNutricionalEntity {
 
     @Column(name = "tab_valor_energetico")

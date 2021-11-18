@@ -11,8 +11,6 @@ import javax.validation.constraints.NotNull;
 @Setter
 @Getter
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class TabelaNutricionalEntrypointModelResquest {

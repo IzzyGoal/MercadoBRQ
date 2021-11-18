@@ -49,7 +49,7 @@ public class ProdutoImplementation implements ProdutoGateway {
     public ProdutoDomainResponse findWithID(Long idProduct, String expand) {
         ProdutoEntity produtoEntity = produtoRepository.findById(idProduct).orElse(ProdutoEntity.builder().build());
 
-        return ProdutoDataProviderMapperResponse.toDomain(produtoEntity);
+        return ProdutoDataProviderMapperResponse.toDomainWithExpand(produtoEntity,expand);
     }
 
     /**

@@ -37,15 +37,6 @@ public class HandlerExceptions extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(httpStatus).body(menssage);
     }
 
-    @Override
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        BindingResult bindingResult = ex.getBindingResult();
-        status = HttpStatus.BAD_REQUEST;
-        MensagemExceptionModelResponse message = exceptionAnswerField(status,ex,bindingResult);
-
-        return handleExceptionInternal(ex, message, headers, status, request);
-    }
-
     @ExceptionHandler(EntityAlreadyExistsException.class)
     public final ResponseEntity<?> handlerEntityAlreadyPresent(Exception ex) {
         HttpStatus httpStatus = HttpStatus.UNPROCESSABLE_ENTITY;
@@ -71,6 +62,15 @@ public class HandlerExceptions extends ResponseEntityExceptionHandler {
         MensagemExceptionModelResponse mensagemExceptionModelResponse = exceptionAnswer(httpStatus,ex);
 
         return ResponseEntity.status(httpStatus).body(mensagemExceptionModelResponse);
+    }
+
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        BindingResult bindingResult = ex.getBindingResult();
+        status = HttpStatus.BAD_REQUEST;
+        MensagemExceptionModelResponse message = exceptionAnswerField(status,ex,bindingResult);
+
+        return handleExceptionInternal(ex, message, headers, status, request);
     }
 
     @ExceptionHandler(ProductBlankException.class)
@@ -114,7 +114,7 @@ public class HandlerExceptions extends ResponseEntityExceptionHandler {
 
         return MensagemExceptionModelResponse.builder()
                 .code(String.valueOf(httpStatus))
-                .menssage("A informação fornecida nao pode ser aceita pois fere o padrão ,por favor ,tente novamente.")
+                .menssage("A informação fornecida nao pode ser aceita pois nao esta dentro do padrão ,por favor ,tente novamente.")
                 .fieldsList(fieldsAnswersList)
                 .build();
     }
