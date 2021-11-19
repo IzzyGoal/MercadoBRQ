@@ -16,7 +16,7 @@ public class CategoriaMapperRequest {
     /**
      * Construtor vazio para evitar instanciação.
      */
-    private CategoriaMapperRequest() {
+    public CategoriaMapperRequest() {
     }
 
     /**
