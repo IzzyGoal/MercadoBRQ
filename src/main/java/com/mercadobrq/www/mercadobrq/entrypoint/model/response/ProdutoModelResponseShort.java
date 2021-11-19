@@ -18,7 +18,7 @@ public class ProdutoModelResponseShort {
     private String nome;
     private String marca;
     private Integer quantidade;
-    private BigDecimal preço;
+    private BigDecimal preco;
     private Boolean ofertado;
     private Integer porcentagem;
 }

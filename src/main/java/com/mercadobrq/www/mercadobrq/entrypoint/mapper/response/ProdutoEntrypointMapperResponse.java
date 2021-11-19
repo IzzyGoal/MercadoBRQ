@@ -61,7 +61,7 @@ public class ProdutoEntrypointMapperResponse {
                 .nome(produtoDomainResponse.getNome())
                 .marca(produtoDomainResponse.getMarca())
                 .quantidade(produtoDomainResponse.getQuantidade())
-                .preço(produtoDomainResponse.getPreco())
+                .preco(produtoDomainResponse.getPreco())
                 .ofertado(produtoDomainResponse.getOfertado())
                 .porcentagem(produtoDomainResponse.getPorcentagem())
                 .build();
