@@ -49,8 +49,8 @@ public class ProdutoUseCaseUtils {
             throw new ProductQuantityIsZeroExcpetion(String.format(MENSAGEM_PRODUTO_QUANTIDADE_ZERO));
         }
     }
-    public static void checkIfQuantityIsNotZeroForUpdate(ProdutoDomainResponse quantidade, Boolean product) {
-        if (quantidade.getQuantidade() <= 0) {
+    public static void checkIfQuantityIsNotZeroForUpdate(ProdutoDomainResponse quantidade) {
+        if (quantidade.getQuantidade() == 0) {
             throw new ProductQuantityIsZeroExcpetion(String.format(MENSAGEM_PRODUTO_QUANTIDADE_ZERO));
         }
     }
@@ -66,26 +66,21 @@ public class ProdutoUseCaseUtils {
     }
 
     public static void checkActiveForQuantity(ProdutoDomainResponse productOrigin, ProdutoDomainResponse product) {
-        if(Objects.nonNull(productOrigin.getAtivo())) {
-            checkIfQuantityIsNotZeroForUpdate(product,productOrigin.getAtivo());
+        if(Objects.equals(true,productOrigin.getAtivo())) {
+            checkIfQuantityIsNotZeroForUpdate(product);
         }
     }
 
     public static void checIfActiveForOff(ProdutoDomainResponse productOrigin, ProdutoDomainResponse product) {
-        if (Objects.nonNull(productOrigin.getOfertado())){
-            if (Objects.equals(product.getAtivo(),true)) {
-                if (Objects.equals(productOrigin.getAtivo(),false)){
+        if (Objects.equals(true,productOrigin.getAtivo()) && Objects.equals(product.getAtivo(),true)){
+            checkIfPercentageIsZero(product);
+            if (Objects.equals(productOrigin.getAtivo(),false) && Objects.equals(true,product.getOfertado())){
                     throw new BadBusyException(String.format(MENSAGEM_PRODUTO_OFERTAD0_ATIVO,  product.getNome()));
-                }
             }
         }
     }
 
-    public static void checkIfOffAndPercentageIsNull(ProdutoDomainResponse productOrigin, ProdutoDomainResponse product) {
-        if (Objects.nonNull(productOrigin.getOfertado()) && Objects.nonNull(productOrigin.getPorcentagem())) {
-            checkIfPercentageIsZero(productOrigin);
-            }
-        }
+
 
 
     public static void checkIfExpandAreBeActive(String expand) {

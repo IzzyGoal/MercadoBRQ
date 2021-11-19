@@ -3,6 +3,7 @@ package com.mercadobrq.www.mercadobrq.dataprovider.mapper.response;
 import com.mercadobrq.www.mercadobrq.dataprovider.entity.ProdutoEntity;
 import com.mercadobrq.www.mercadobrq.entrypoint.mapper.response.TabelaNutricionalEntrypointMapperResponse;
 import com.mercadobrq.www.mercadobrq.usecase.domain.response.ProdutoDomainResponse;
+import com.mercadobrq.www.mercadobrq.usecase.domain.response.TabelaNutricionalDomainResponse;
 import org.springframework.data.domain.Page;
 
 import java.util.Objects;
@@ -37,6 +38,7 @@ public class ProdutoDataProviderMapperResponse {
                 .ofertado(product.getOfertado())
                 .porcentagem(product.getPorcetagem())
                 .categoria(CategoriaMapperResponse.toDomain(product.getCategoria()))
+                .tabela_nutricional(TabelaNutricionalEntrypointMapperResponse.toDomain(product.getTabelaNutricional()))
                 .build();
     }
 

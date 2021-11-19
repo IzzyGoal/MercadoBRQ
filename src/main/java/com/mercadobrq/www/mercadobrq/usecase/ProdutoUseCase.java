@@ -58,7 +58,7 @@ public class ProdutoUseCase {
     }
 
     public void deleteProduct(Long idProduct) {
-        String expand = null;
+        String expand = "tabela_nutricional";
         findProductIdWithForDelete(idProduct,expand);
 
         produtoGateway.deleteProduct(idProduct);
@@ -67,9 +67,10 @@ public class ProdutoUseCase {
     private void findProductIdWithForDelete(Long idProduct,String expand) {
         if (Objects.nonNull(idProduct)) {
             ProdutoDomainResponse product  = produtoGateway.findWithID(idProduct,expand);
-            if (Objects.isNull(product)) {
+            CheckIfProductExist(product, idProduct);
+        }
+        else {
                 throw new ProductNotExistException(String.format(MENSAGEM_PRODUTO_NAO_EXISTE, idProduct));
-            }
         }
     }
 
@@ -100,7 +101,6 @@ public class ProdutoUseCase {
         checkIfIdCategoryExist(productOrigin);
         ProdutoUseCaseUtils.checkActiveForQuantity(productOrigin,product);
         ProdutoUseCaseUtils.checIfActiveForOff(productOrigin,product);
-        ProdutoUseCaseUtils.checkIfOffAndPercentageIsNull(productOrigin,product);
 
         newDataProduct.forEach((name, value) -> {
             Field field = ReflectionUtils.findField(ProdutoDomainResponse.class, name);

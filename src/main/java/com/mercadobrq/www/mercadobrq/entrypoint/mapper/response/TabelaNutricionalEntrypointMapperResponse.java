@@ -40,6 +40,9 @@ public class TabelaNutricionalEntrypointMapperResponse {
     }
 
     public static TabelaNutricionalDomainResponse toDomain(TabelaNutricionalEntity tabelaNutricional) {
+        if (Objects.isNull(tabelaNutricional)){
+            return TabelaNutricionalDomainResponse.builder().build();
+        }
         return TabelaNutricionalDomainResponse.builder()
                 .valor_energetico(tabelaNutricional.getValorEnergetico())
                 .gordura_saturada(tabelaNutricional.getGorduraSaturada())

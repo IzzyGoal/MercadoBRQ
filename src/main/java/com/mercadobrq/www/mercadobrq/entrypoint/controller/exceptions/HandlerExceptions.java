@@ -37,6 +37,15 @@ public class HandlerExceptions extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(httpStatus).body(menssage);
     }
 
+    @ExceptionHandler(EmptyOff.class)
+    public final ResponseEntity<?> handlerEmptyOff(Exception ex) {
+        HttpStatus httpStatus = HttpStatus.NO_CONTENT;
+        MensagemExceptionModelResponse message = exceptionAnswer(httpStatus,ex);
+
+        return ResponseEntity.status(httpStatus).body(message);
+    }
+
+
     @ExceptionHandler(EntityAlreadyExistsException.class)
     public final ResponseEntity<?> handlerEntityAlreadyPresent(Exception ex) {
         HttpStatus httpStatus = HttpStatus.UNPROCESSABLE_ENTITY;
@@ -84,7 +93,7 @@ public class HandlerExceptions extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(BadResquestPostException.class)
     private final ResponseEntity<?> handleCategoryNotExist(Exception ex) {
-        HttpStatus httpStatus = HttpStatus.NOT_FOUND;
+        HttpStatus httpStatus = HttpStatus.BAD_REQUEST;
 
         MensagemExceptionModelResponse mensagemExceptionModelResponse = exceptionAnswer(httpStatus,ex);
 
