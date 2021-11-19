@@ -55,7 +55,7 @@ public class ProdutoEntrypointMapperResponse {
         return produtoDomain.map(ProdutoEntrypointMapperResponse::toModelShort);
     }
 
-    private static ProdutoModelResponseShort toModelShort(ProdutoDomainResponse produtoDomainResponse) {
+    public static ProdutoModelResponseShort toModelShort(ProdutoDomainResponse produtoDomainResponse) {
         return ProdutoModelResponseShort.builder()
                 .id(produtoDomainResponse.getId())
                 .nome(produtoDomainResponse.getNome())

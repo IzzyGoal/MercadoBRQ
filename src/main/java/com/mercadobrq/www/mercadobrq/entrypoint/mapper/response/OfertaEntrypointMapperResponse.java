@@ -13,7 +13,7 @@ public class OfertaEntrypointMapperResponse {
         return produtoDomainResponses.map(OfertaEntrypointMapperResponse::toDomain);
     }
 
-    private static ProdutoModelResponseShort toDomain(ProdutoDomainResponse produtoDomainResponse) {
+    public static ProdutoModelResponseShort toDomain(ProdutoDomainResponse produtoDomainResponse) {
         return ProdutoModelResponseShort.builder()
                 .id(produtoDomainResponse.getId())
                 .nome(produtoDomainResponse.getNome())

@@ -1,5 +1,6 @@
 package com.mercadobrq.www.mercadobrq.entrypoint.model.request;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,6 +15,7 @@ import javax.validation.constraints.NotNull;
  */
 @Getter
 @Setter
+@Builder
 public class CategoriaModelRequest {
 
     private Long id;
