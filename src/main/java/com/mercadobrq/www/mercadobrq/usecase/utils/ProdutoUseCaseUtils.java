@@ -15,7 +15,8 @@ public class ProdutoUseCaseUtils {
     private static final String MENSAGEM_PRODUTO_PORCENTAGEM_ZERO = "A porcentagem de produto nao pode ser menor ou igual a zero";
     private static final String MENSAGEM_PRODUTO_INATIVO_PARA_OFERTA = "O produto nao esta ativo a oferta por tanto essa propiedade nao pode ser alterada";
     private static final String MENSAGEM_PRODUTO_OFERTAD0_ATIVO = "O produto '%s' nao pode ser ofertado , pois não esta ativo";
-
+    private static final String EXPAND_PRODUTO_IVALIDO = "O param para expandir informação é invalido";
+    private static final Object TABELA_NUTRICIONAL = "tabela_nutricional";
 
 
     /**
@@ -87,4 +88,11 @@ public class ProdutoUseCaseUtils {
         }
 
 
+    public static void checkIfExpandAreBeActive(String expand) {
+        if (Objects.nonNull(expand)) {
+            if (!expand.equalsIgnoreCase(String.valueOf(TABELA_NUTRICIONAL))){
+                throw new BadBusyException(String.format(EXPAND_PRODUTO_IVALIDO));
+            }
+        }
+    }
 }

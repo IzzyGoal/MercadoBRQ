@@ -3,6 +3,9 @@ package com.mercadobrq.www.mercadobrq.entrypoint.mapper.response;
 import com.mercadobrq.www.mercadobrq.dataprovider.entity.TabelaNutricionalEntity;
 import com.mercadobrq.www.mercadobrq.entrypoint.model.response.TabelaNutricionalEntrypointModelResponse;
 import com.mercadobrq.www.mercadobrq.usecase.domain.response.TabelaNutricionalDomainResponse;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.Objects;
 
 public class TabelaNutricionalEntrypointMapperResponse {
     /**
@@ -23,6 +26,9 @@ public class TabelaNutricionalEntrypointMapperResponse {
     }
 
     public static TabelaNutricionalDomainResponse toDomainWithExpand(TabelaNutricionalEntity tabelaNutricional, String expand) {
+        if (Objects.isNull(tabelaNutricional) || StringUtils.isBlank(expand)) {
+            return TabelaNutricionalDomainResponse.builder().build();
+        }
         return TabelaNutricionalDomainResponse.builder()
                 .valorEnergetico(tabelaNutricional.getValorEnergetico())
                 .gorduraSaturada(tabelaNutricional.getGorduraSaturada())

@@ -50,6 +50,7 @@ public class ProdutoUseCase {
 
     public ProdutoDomainResponse findProductWithId(Long idProduct, String expand) {
 
+        ProdutoUseCaseUtils.checkIfExpandAreBeActive(expand);
         ProdutoDomainResponse product = produtoGateway.findWithID(idProduct,expand);
         CheckIfProductExist(product, idProduct);
 
