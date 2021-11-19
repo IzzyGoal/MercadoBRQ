@@ -5,6 +5,8 @@ import com.mercadobrq.www.mercadobrq.entrypoint.mapper.response.TabelaNutriciona
 import com.mercadobrq.www.mercadobrq.usecase.domain.response.ProdutoDomainResponse;
 import org.springframework.data.domain.Page;
 
+import java.util.Objects;
+
 /**
  * Classe resposavel por mappear e transportar informação entre dominio e entidade.
  *
@@ -35,7 +37,6 @@ public class ProdutoDataProviderMapperResponse {
                 .ofertado(product.getOfertado())
                 .porcentagem(product.getPorcetagem())
                 .categoria(CategoriaMapperResponse.toDomain(product.getCategoria()))
-                .tabela_nutricional(TabelaNutricionalEntrypointMapperResponse.toDomain(product.getTabelaNutricional()))
                 .build();
     }
 
