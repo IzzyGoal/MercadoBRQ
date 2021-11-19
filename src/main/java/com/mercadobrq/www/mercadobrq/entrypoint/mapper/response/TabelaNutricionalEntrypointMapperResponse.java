@@ -16,8 +16,8 @@ public class TabelaNutricionalEntrypointMapperResponse {
 
     public static TabelaNutricionalEntrypointModelResponse toModel(TabelaNutricionalDomainResponse tabela) {
         return TabelaNutricionalEntrypointModelResponse.builder()
-                .valorEnergetico(tabela.getValorEnergetico())
-                .gorduraSaturada(tabela.getGorduraSaturada())
+                .valorEnergetico(tabela.getValor_energetico())
+                .gorduraSaturada(tabela.getGordura_saturada())
                 .sodio(tabela.getSodio())
                 .acucar(tabela.getAcucar())
                 .proteinas(tabela.getProteinas())
@@ -30,8 +30,8 @@ public class TabelaNutricionalEntrypointMapperResponse {
             return TabelaNutricionalDomainResponse.builder().build();
         }
         return TabelaNutricionalDomainResponse.builder()
-                .valorEnergetico(tabelaNutricional.getValorEnergetico())
-                .gorduraSaturada(tabelaNutricional.getGorduraSaturada())
+                .valor_energetico(tabelaNutricional.getValorEnergetico())
+                .gordura_saturada(tabelaNutricional.getGorduraSaturada())
                 .sodio(tabelaNutricional.getSodio())
                 .acucar(tabelaNutricional.getAcucar())
                 .proteinas(tabelaNutricional.getProteinas())
@@ -41,8 +41,8 @@ public class TabelaNutricionalEntrypointMapperResponse {
 
     public static TabelaNutricionalDomainResponse toDomain(TabelaNutricionalEntity tabelaNutricional) {
         return TabelaNutricionalDomainResponse.builder()
-                .valorEnergetico(tabelaNutricional.getValorEnergetico())
-                .gorduraSaturada(tabelaNutricional.getGorduraSaturada())
+                .valor_energetico(tabelaNutricional.getValorEnergetico())
+                .gordura_saturada(tabelaNutricional.getGorduraSaturada())
                 .sodio(tabelaNutricional.getSodio())
                 .acucar(tabelaNutricional.getAcucar())
                 .proteinas(tabelaNutricional.getProteinas())

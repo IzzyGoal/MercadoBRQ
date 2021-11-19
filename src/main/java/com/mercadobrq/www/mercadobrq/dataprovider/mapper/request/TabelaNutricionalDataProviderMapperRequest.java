@@ -43,8 +43,8 @@ public class TabelaNutricionalDataProviderMapperRequest {
 
     public static TabelaNutricionalEntity toEntityUpdate(TabelaNutricionalDomainResponse tabelaNutricional) {
         return TabelaNutricionalEntity.builder()
-                .valorEnergetico(tabelaNutricional.getValorEnergetico())
-                .gorduraSaturada(tabelaNutricional.getGorduraSaturada())
+                .valorEnergetico(tabelaNutricional.getValor_energetico())
+                .gorduraSaturada(tabelaNutricional.getGordura_saturada())
                 .sodio(tabelaNutricional.getSodio())
                 .acucar(tabelaNutricional.getAcucar())
                 .proteinas(tabelaNutricional.getProteinas())

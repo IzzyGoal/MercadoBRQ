@@ -35,7 +35,7 @@ public class ProdutoDataProviderMapperResponse {
                 .ofertado(product.getOfertado())
                 .porcentagem(product.getPorcetagem())
                 .categoria(CategoriaMapperResponse.toDomain(product.getCategoria()))
-                .tabelaNutricional(TabelaNutricionalEntrypointMapperResponse.toDomain(product.getTabelaNutricional()))
+                .tabela_nutricional(TabelaNutricionalEntrypointMapperResponse.toDomain(product.getTabelaNutricional()))
                 .build();
     }
 
@@ -61,7 +61,7 @@ public class ProdutoDataProviderMapperResponse {
                 .ofertado(produtoEntity.getOfertado())
                 .porcentagem(produtoEntity.getPorcetagem())
                 .categoria(CategoriaMapperResponse.toDomain(produtoEntity.getCategoria()))
-                .tabelaNutricional(TabelaNutricionalEntrypointMapperResponse.toDomainWithExpand(produtoEntity
+                .tabela_nutricional(TabelaNutricionalEntrypointMapperResponse.toDomainWithExpand(produtoEntity
                         .getTabelaNutricional(), expand))
                 .build();
     }

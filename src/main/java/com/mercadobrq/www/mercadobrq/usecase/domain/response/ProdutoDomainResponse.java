@@ -17,8 +17,6 @@ import java.math.BigDecimal;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ProdutoDomainResponse {
 
     private Long id;
@@ -31,5 +29,5 @@ public class ProdutoDomainResponse {
     private Boolean ofertado;
     private Integer porcentagem;
     private CategoriaDomainResponse categoria;
-    private TabelaNutricionalDomainResponse tabelaNutricional;
+    private TabelaNutricionalDomainResponse tabela_nutricional;
 }

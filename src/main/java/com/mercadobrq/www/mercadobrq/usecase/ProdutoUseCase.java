@@ -74,8 +74,7 @@ public class ProdutoUseCase {
     }
 
     public ProdutoDomainResponse partiallyUpdate(Long idProduct, Map<String, Object> newData) {
-        String expand = null;
-        ProdutoDomainResponse product = produtoGateway.findWithID(idProduct,expand);
+        ProdutoDomainResponse product = produtoGateway.findWithID(idProduct, "tabela_nutricional");
         ProdutoUseCaseUtils.CheckIfProductExist(product, idProduct);
 
         merge(newData, product);
