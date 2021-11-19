@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class CategoriaDataProviderMapperRequestTest {
 
     @Test
-    void toEntityUpdateSucces(){
+    void toEntityUpdateSucces() {
         CategoriaEntity categoriaEntity = CategoriaMapperRequest.toEntityUpdate((getMockCategoriaEntityDomainResponse()));
 
         assertAll(
@@ -22,7 +22,7 @@ public class CategoriaDataProviderMapperRequestTest {
     }
 
     @Test
-    void toEntitysucess(){
+    void toEntitysucess() {
         CategoriaEntity categoriaEntity = CategoriaMapperRequest.toEntity((getMockCategoriaEntityResponseToEntity()));
 
         assertAll(
@@ -31,7 +31,7 @@ public class CategoriaDataProviderMapperRequestTest {
     }
 
     @Test
-    void toProvideIDSucess(){
+    void toProvideIDSucess() {
         CategoriaEntity categoriaEntity = CategoriaMapperRequest.toProvideID((getMockCategoriaEntityResponseToEntity()));
 
         assertAll(
@@ -41,7 +41,7 @@ public class CategoriaDataProviderMapperRequestTest {
     }
 
     @Test
-    void toProvideIDUpdateSucess(){
+    void toProvideIDUpdateSucess() {
         CategoriaEntity categoriaEntity = CategoriaMapperRequest.toProvideIDUpdate((getMockCategoriaEntityDomainResponse()));
 
         assertAll(

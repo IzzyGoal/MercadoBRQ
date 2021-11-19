@@ -13,7 +13,7 @@ public class OfertaMapperResponse {
         return productInOff.map(OfertaMapperResponse::toDomain);
     }
 
-    private static ProdutoDomainResponse toDomain(ProdutoEntity produtoEntity) {
+    public static ProdutoDomainResponse toDomain(ProdutoEntity produtoEntity) {
         return ProdutoDomainResponse.builder()
                 .id(produtoEntity.getId())
                 .nome(produtoEntity.getNome())

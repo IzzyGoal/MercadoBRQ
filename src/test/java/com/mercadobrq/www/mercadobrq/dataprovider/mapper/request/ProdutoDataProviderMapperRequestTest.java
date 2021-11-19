@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ProdutoDataProviderMapperRequestTest {
 
     @Test
-    void toEntitySucess(){
+    void toEntitySucess() {
         ProdutoEntity produtoEntity = ProdutoDataProviderMapperResquest.toEntity(getMockProdutoDomainResquest());
         assertAll(
                 () -> assertEquals("Fanta",produtoEntity.getNome()),
@@ -40,7 +40,7 @@ public class ProdutoDataProviderMapperRequestTest {
     }
 
     @Test
-    void toEntityUpdateSucess(){
+    void toEntityUpdateSucess() {
         ProdutoEntity produtoEntity = ProdutoDataProviderMapperResquest.toEntityUpdate(getMockProdutoDomainResponse());
 
         assertAll(
